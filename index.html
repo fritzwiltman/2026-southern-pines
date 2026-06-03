@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Southern Pines 2026 — Golf Trip</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pine: #1a3020;
+    --pine-mid: #2d5036;
+    --pine-light: #3d6b47;
+    --sage: #7a9e7e;
+    --sand: #d4bc8a;
+    --sand-light: #e8d9b5;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --charcoal: #1e1e1e;
+    --mid-gray: #5a5a5a;
+    --light-gray: #e8e4de;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --red-accent: #8b2e2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--pine);
+    color: var(--cream);
+    padding: 3rem 1.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+  .hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sand);
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: var(--sage);
+    margin-top: 1rem;
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .hero-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    opacity: 0.7;
+  }
+  .hero-meta-value {
+    font-size: 0.9rem;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* ── NAV TABS ── */
+  .tab-nav {
+    background: var(--pine-mid);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-nav-inner {
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    padding: 0.9rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.85); }
+  .tab-btn.active {
+    color: var(--sand);
+    border-bottom-color: var(--sand);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--pine);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--sand);
+  }
+  .section-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── DAY CARDS ── */
+  .day-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .day-card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .day-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--pine);
+    color: var(--cream);
+  }
+  .day-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--sand);
+    line-height: 1;
+    min-width: 2rem;
+  }
+  .day-header-text {}
+  .day-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .day-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-top: 0.1rem;
+  }
+  .day-card-body { padding: 1.25rem; }
+  .day-detail {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 0.88rem;
+  }
+  .day-detail:last-child { border-bottom: none; }
+  .day-detail-icon {
+    font-size: 0.9rem;
+    min-width: 1.2rem;
+    text-align: center;
+    margin-top: 0.05rem;
+  }
+  .day-detail-text { color: var(--mid-gray); line-height: 1.4; }
+  .day-detail-text strong { color: var(--charcoal); }
+  .day-detail-text a { color: var(--pine-light); text-decoration: none; }
+  .day-detail-text a:hover { text-decoration: underline; }
+  .day-note {
+    background: var(--cream);
+    border-left: 3px solid var(--sand);
+    padding: 0.6rem 0.85rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.82rem;
+    color: var(--mid-gray);
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  .course-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── COURSE CARDS ── */
+  .course-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+  .course-card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .course-card-top {
+    display: flex;
+    align-items: stretch;
+  }
+  .course-day-tag {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    background: var(--pine);
+    color: var(--sand);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .course-card-main { flex: 1; padding: 1.1rem 1.25rem 1rem; }
+  .course-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--pine);
+    margin-bottom: 0.2rem;
+  }
+  .course-designer {
+    font-size: 0.78rem;
+    color: var(--mid-gray);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .course-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+  .course-stat {
+    background: var(--cream);
+    border: 1px solid var(--sand-light);
+    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--pine);
+    letter-spacing: 0.05em;
+  }
+  .course-desc {
+    font-size: 0.85rem;
+    color: var(--mid-gray);
+    line-height: 1.55;
+    margin-bottom: 0.85rem;
+  }
+  .course-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .course-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    color: var(--pine-light);
+    text-decoration: none;
+    border: 1px solid var(--sage);
+    border-radius: 4px;
+    padding: 0.3rem 0.65rem;
+    transition: all 0.18s;
+  }
+  .course-link:hover {
+    background: var(--pine);
+    color: var(--sand);
+    border-color: var(--pine);
+  }
+  .course-fee {
+    background: var(--pine);
+    color: var(--sand);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 -1px -1px;
+  }
+  .course-format {
+    font-size: 0.7rem;
+    color: var(--sage);
+  }
+
+  /* ── COST TABLE ── */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+  .cost-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--pine);
+  }
+  .cost-table th:last-child { text-align: right; }
+  .cost-table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--mid-gray);
+  }
+  .cost-table td:last-child { text-align: right; font-family: 'DM Mono', monospace; color: var(--charcoal); font-size: 0.85rem; }
+  .cost-table tr:last-child td { border-bottom: none; }
+  .cost-table tr.total-row td {
+    font-weight: 600;
+    color: var(--pine);
+    border-top: 2px solid var(--pine);
+    border-bottom: none;
+    background: var(--cream);
+    font-size: 0.9rem;
+  }
+  .cost-table tr.total-row td:last-child { font-family: 'DM Mono', monospace; font-size: 0.9rem; }
+
+  .cost-box {
+    background: var(--pine);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  .cost-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .cost-box-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--sand);
+  }
+  .cost-box-sub {
+    font-size: 0.75rem;
+    color: var(--sage);
+    margin-top: 0.15rem;
+  }
+
+  /* ── LODGING ── */
+  .lodging-card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .lodging-header {
+    background: var(--pine);
+    padding: 1.1rem 1.25rem;
+    color: var(--cream);
+  }
+  .lodging-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .lodging-meta {
+    font-size: 0.8rem;
+    color: var(--sage);
+    font-style: italic;
+  }
+  .lodging-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lodging-detail {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    align-items: flex-start;
+  }
+  .lodging-detail-icon { min-width: 1.2rem; text-align: center; font-size: 0.9rem; }
+  .lodging-detail-text { color: var(--mid-gray); line-height: 1.4; }
+  .lodging-detail-text strong { color: var(--charcoal); }
+  .lodging-detail-text a { color: var(--pine-light); text-decoration: none; }
+  .lodging-detail-text a:hover { text-decoration: underline; }
+  .lodging-note {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 0.6rem 0.85rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.82rem;
+    color: var(--mid-gray);
+    font-style: italic;
+    margin-top: 0.25rem;
+  }
+
+  /* ── BOOKING STATUS ── */
+  .booking-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .booking-item {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .booking-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .booking-course {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--pine);
+  }
+  .booking-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-booked { background: #d4edda; color: #1a5e2a; }
+  .badge-reminder { background: #fff3cd; color: #856404; }
+  .booking-action {
+    font-size: 0.82rem;
+    color: var(--mid-gray);
+    line-height: 1.45;
+  }
+  .booking-action strong { color: var(--charcoal); }
+  .booking-notes {
+    font-size: 0.79rem;
+    color: var(--mid-gray);
+    font-style: italic;
+    border-top: 1px solid var(--light-gray);
+    padding-top: 0.4rem;
+    margin-top: 0.1rem;
+  }
+
+  /* ── STANDINGS ── */
+  .standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-bottom: 1.5rem;
+  }
+  .standings-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--pine);
+  }
+  .standings-table th:not(:first-child) { text-align: center; }
+  .standings-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--light-gray);
+    vertical-align: middle;
+  }
+  .standings-table td:not(:first-child) {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+  }
+  .player-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--pine);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .rank-badge {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: var(--light-gray);
+    color: var(--mid-gray);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  .rank-1 { background: var(--gold); color: var(--pine); }
+  .earnings-cell { color: var(--charcoal); }
+  .earnings-pos { color: #1a5e2a; }
+  .earnings-neg { color: var(--red-accent); }
+  .earnings-zero { color: var(--mid-gray); }
+  .tbd-cell { color: var(--light-gray); font-size: 0.72rem; letter-spacing: 0.1em; }
+
+  .round-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+    margin-bottom: 1.25rem;
+  }
+  .round-result-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--pine);
+    text-align: left;
+  }
+  .round-result-table th:not(:first-child) { text-align: center; }
+  .round-result-table td {
+    padding: 0.6rem;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--mid-gray);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .round-result-table td:first-child {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: var(--charcoal);
+    font-size: 0.85rem;
+  }
+  .round-result-table td:not(:first-child) { text-align: center; }
+  .round-section {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .round-section-header {
+    background: var(--pine-mid);
+    padding: 0.75rem 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .round-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .round-format-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sand);
+    background: rgba(255,255,255,0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+  .round-section-body { padding: 0.75rem 1.1rem 1rem; }
+  .tbd-overlay {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--light-gray);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── HANDICAPS ── */
+  .handicap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .handicap-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--pine);
+    text-align: left;
+  }
+  .handicap-table th:not(:first-child) { text-align: center; }
+  .handicap-table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--mid-gray);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .handicap-table td:first-child {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: var(--pine);
+    font-size: 0.88rem;
+  }
+  .handicap-table td:not(:first-child) { text-align: center; }
+  .handicap-table tr:last-child td { border-bottom: none; }
+
+  /* ── INFO CARDS ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 500px) { .info-grid { grid-template-columns: 1fr; } }
+  .info-card {
+    background: #fff;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .info-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.3rem;
+  }
+  .info-card-value {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--pine);
+  }
+  .info-card-sub {
+    font-size: 0.78rem;
+    color: var(--mid-gray);
+    margin-top: 0.2rem;
+  }
+
+  /* ── UTIL ── */
+  .spacer { height: 1.5rem; }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--light-gray);
+    margin: 1.5rem 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--pine);
+    color: var(--sage);
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+  footer span { color: var(--sand); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Golf Trip · Columbus Day Weekend</div>
+    <h1>Southern <em>Pines</em><br>2026</h1>
+    <div class="hero-subtitle">North Carolina Sandhills · Four Rounds · Four Men</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Dates</div>
+        <div class="hero-meta-value">Oct 8 – 12, 2026</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Players</div>
+        <div class="hero-meta-value">Fritz · Ian · Matt · Charlie</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Lodging</div>
+        <div class="hero-meta-value">Serene South Henley, VRBO</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Rounds</div>
+        <div class="hero-meta-value">4 Courses</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="showTab('itinerary')">Itinerary</button>
+    <button class="tab-btn" onclick="showTab('courses')">Courses</button>
+    <button class="tab-btn" onclick="showTab('lodging')">Lodging</button>
+    <button class="tab-btn" onclick="showTab('costs')">Costs</button>
+    <button class="tab-btn" onclick="showTab('standings')">Standings</button>
+    <button class="tab-btn" onclick="showTab('handicaps')">Handicaps</button>
+    <button class="tab-btn" onclick="showTab('booking')">Booking</button>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ── ITINERARY ── -->
+  <div class="tab-panel active" id="tab-itinerary">
+    <h2 class="section-title">Day-by-Day</h2>
+    <div class="day-cards">
+
+      <div class="day-card">
+        <div class="day-card-header">
+          <div class="day-number">1</div>
+          <div class="day-header-text">
+            <div class="day-date">Thursday · Oct 8</div>
+            <div class="day-title">Travel Day</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">🚗</div>
+            <div class="day-detail-text">Travel to Southern Pines, NC — everyone makes their way down</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🏠</div>
+            <div class="day-detail-text"><strong>Check-in at 4:00 PM</strong> · <a href="https://www.vrbo.com/4388553" target="_blank">Serene South Henley, VRBO</a> — Southern Pines</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🍺</div>
+            <div class="day-detail-text">Settle in, dinner, get ready for the weekend</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-card-header">
+          <div class="day-number">2</div>
+          <div class="day-header-text">
+            <div class="day-date">Friday · Oct 9</div>
+            <div class="day-title">Tot Hill Farm</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">🚗</div>
+            <div class="day-detail-text"><strong>Depart 8:50 AM</strong> — drive to Asheboro (~1 hr north)</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">⛳</div>
+            <div class="day-detail-text"><strong>Tot Hill Farm Golf Club</strong> · Tee time: <strong>10:50 AM</strong> · Mike Strantz Design · $180/person</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🔥</div>
+            <div class="day-detail-text">Return to house · Grill out · Beer die</div>
+          </div>
+          <div class="day-note">🎯 Format: Nassau — 6-hole matches, rotating partners (everyone partners with everyone once)</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-card-header">
+          <div class="day-number">3</div>
+          <div class="day-header-text">
+            <div class="day-date">Saturday · Oct 10</div>
+            <div class="day-title">Southern Pines</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">📍</div>
+            <div class="day-detail-text"><strong>&lt;10 min from the house</strong></div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">⛳</div>
+            <div class="day-detail-text"><strong>Southern Pines Golf Club</strong> · Tee time: <strong>TBD</strong> · Donald Ross Design · $245/person</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🏈</div>
+            <div class="day-detail-text">College football — <strong>Alabama vs. Georgia</strong> (TBD) · <strong>Maryland at Ohio State</strong> (3:30–8pm)</div>
+          </div>
+          <div class="day-note">🎯 Format: TBD — likely partner event</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-card-header">
+          <div class="day-number">4</div>
+          <div class="day-header-text">
+            <div class="day-date">Sunday · Oct 11</div>
+            <div class="day-title">Mid Pines</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">📍</div>
+            <div class="day-detail-text"><strong>3 min from the house</strong></div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">⛳</div>
+            <div class="day-detail-text"><strong>Mid Pines Inn &amp; Golf Club</strong> · Tee time: <strong>TBD</strong> · Donald Ross Design · $285/person</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🏈</div>
+            <div class="day-detail-text">NFL Sunday — <strong>Steelers vs. Colts @ 1pm</strong> · <strong>Bears at Packers @ 4:25pm</strong></div>
+          </div>
+          <div class="day-note">🎯 Format: Stableford (individual)</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-card-header">
+          <div class="day-number">5</div>
+          <div class="day-header-text">
+            <div class="day-date">Monday · Oct 12</div>
+            <div class="day-title">Pine Needles · Drive Home</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">⛳</div>
+            <div class="day-detail-text"><strong>Pine Needles Lodge &amp; Golf Club</strong> · Donald Ross Design · $315/person</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🚿</div>
+            <div class="day-detail-text">Use locker room &amp; showers after round (pack toiletry bag + change of clothes — leave in car)</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🚗</div>
+            <div class="day-detail-text">Drive home after round — Columbus Day, expect light traffic</div>
+          </div>
+          <div class="day-note">🎯 Format: Individual Net Stroke Play — pick up at net double bogey</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── COURSES ── -->
+  <div class="tab-panel" id="tab-courses">
+    <h2 class="section-title">The Courses</h2>
+    <div class="course-cards">
+
+      <div class="course-card">
+        <img class="course-img" src="https://www.top100golfcourses.com/img/courses/tot-hill-farm-golf-club_1.jpg" alt="Tot Hill Farm Golf Club" onerror="this.style.display='none'">
+        <div class="course-card-top">
+          <div class="course-card-main">
+            <div class="course-name">Tot Hill Farm Golf Club</div>
+            <div class="course-designer">Mike Strantz, 2000 · Asheboro, NC · ~1 hr from lodging</div>
+            <div class="course-stats">
+              <span class="course-stat">Par 72</span>
+              <span class="course-stat">Silver Tees · 6,180 yds</span>
+              <span class="course-stat">Rating 70.6</span>
+              <span class="course-stat">Slope 135</span>
+            </div>
+            <div class="course-desc">A wild Mike Strantz design sharing the same bold DNA as Tobacco Road. Dramatic elevation changes, multi-tiered greens protected by rocks and streams, and blind approach shots make this one of the most adventurous rounds in the Carolinas. Recently restored by new ownership and playing better than ever.</div>
+            <div class="course-links">
+              <a href="https://www.tothillfarm.com" class="course-link" target="_blank">🌐 Website</a>
+              <a href="https://tothillfarm.com/scorecard/" class="course-link" target="_blank">📋 Scorecard</a>
+            </div>
+          </div>
+        </div>
+        <div class="course-fee">
+          <span>$180 / person · Confirmed &amp; Booked ✓</span>
+          <span class="course-format">Nassau</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img class="course-img" src="https://golfcoursegurus.com/photos/courses/southern-pines-golf-club-1.jpg" alt="Southern Pines Golf Club" onerror="this.style.display='none'">
+        <div class="course-card-top">
+          <div class="course-day-tag">Saturday</div>
+          <div class="course-card-main">
+            <div class="course-name">Southern Pines Golf Club</div>
+            <div class="course-designer">Donald Ross, 1906 (Restored by Kyle Franz, 2021) · Southern Pines, NC · &lt;10 min from lodging</div>
+            <div class="course-stats">
+              <span class="course-stat">Par 71</span>
+              <span class="course-stat">White Tees · 6,106 yds</span>
+              <span class="course-stat">Rating 70.3</span>
+              <span class="course-stat">Slope 135</span>
+            </div>
+            <div class="course-desc">One of the oldest Ross designs in the Sandhills, recently restored to its full glory by Kyle Franz. Short by modern standards but demands precise shot-making with a variety of approaches to each hole. The rugged Sandhills terrain and classic Ross greens make this a must-play — a true gem.</div>
+            <div class="course-links">
+              <a href="https://www.southernpinesgolfclub.com" class="course-link" target="_blank">🌐 Website</a>
+              <a href="https://southernpinesgolfclub.com/wp-content/uploads/sites/4/2026/05/scorecard-with-lost-hole.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            </div>
+          </div>
+        </div>
+        <div class="course-fee">
+          <span>$245 / person · Booking opens 9/9</span>
+          <span class="course-format">Nassau</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img class="course-img" src="https://www.top100golfcourses.com/img/courses/mid-pines-inn-golf-club_1.jpg" alt="Mid Pines Inn & Golf Club" onerror="this.style.display='none'">
+        <div class="course-card-top">
+          <div class="course-day-tag">Sunday</div>
+          <div class="course-card-main">
+            <div class="course-name">Mid Pines Inn &amp; Golf Club</div>
+            <div class="course-designer">Donald Ross, 1921 · Southern Pines, NC · 3 min from lodging</div>
+            <div class="course-stats">
+              <span class="course-stat">Par 72</span>
+              <span class="course-stat">White Tees · 6,048 yds</span>
+              <span class="course-stat">Rating 70.4</span>
+              <span class="course-stat">Slope 136</span>
+            </div>
+            <div class="course-desc">Classic Donald Ross parkland layout perched atop a knoll at the historic Mid Pines Inn. Slight elevation changes, classic bunkering, and fast, sloping greens that will test every part of your game. Sister course to Pine Needles, just across the road. Walkers' paradise.</div>
+            <div class="course-links">
+              <a href="https://www.midpinesinn.com" class="course-link" target="_blank">🌐 Website</a>
+              <a href="https://midpinesinn.com/wp-content/uploads/sites/3/2026/05/MP-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            </div>
+          </div>
+        </div>
+        <div class="course-fee">
+          <span>$285 / person · Booking opens 9/11</span>
+          <span class="course-format">Stableford</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img class="course-img" src="https://www.top100golfcourses.com/img/courses/pine-needles-lodge-golf-club_1.jpg" alt="Pine Needles Lodge & Golf Club" onerror="this.style.display='none'">
+        <div class="course-card-top">
+          <div class="course-day-tag">Monday</div>
+          <div class="course-card-main">
+            <div class="course-name">Pine Needles Lodge &amp; Golf Club</div>
+            <div class="course-designer">Donald Ross, 1927 · Southern Pines, NC · 3 min from lodging</div>
+            <div class="course-stats">
+              <span class="course-stat">Par 71</span>
+              <span class="course-stat">White Tees · 6,033 yds</span>
+              <span class="course-stat">Rating 70.0</span>
+              <span class="course-stat">Slope 133</span>
+            </div>
+            <div class="course-desc">The crown jewel of the trip and the flagship of the Pines trio. Home to four U.S. Women's Open Championships and ranked among the best courses in America. Wide fairways with classic Ross greens that punish anything short or right. Full resort with locker rooms and showers — perfect final round.</div>
+            <div class="course-links">
+              <a href="https://www.pineneedleslodge.com" class="course-link" target="_blank">🌐 Website</a>
+              <a href="https://pineneedleslodge.com/wp-content/uploads/sites/2/2026/05/PN-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            </div>
+          </div>
+        </div>
+        <div class="course-fee">
+          <span>$315 / person · Booking opens 9/12</span>
+          <span class="course-format">Net Stroke</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── LODGING ── -->
+  <div class="tab-panel" id="tab-lodging">
+    <h2 class="section-title">Lodging</h2>
+    <div class="lodging-card">
+      <div class="lodging-header">
+        <div class="lodging-name">Serene South Henley</div>
+        <div class="lodging-meta">VRBO · Southern Pines, NC</div>
+      </div>
+      <div class="lodging-body">
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">📅</div>
+          <div class="lodging-detail-text"><strong>Check-in:</strong> Thursday, October 8 &nbsp;·&nbsp; <strong>Check-out:</strong> Monday, October 12 (4 nights)</div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">🔗</div>
+          <div class="lodging-detail-text"><a href="https://www.vrbo.com/4388553" target="_blank"><strong>View on VRBO →</strong></a></div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">📍</div>
+          <div class="lodging-detail-text">Southern Pines, NC — 3 min drive to Pine Needles &amp; Mid Pines</div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">🛏️</div>
+          <div class="lodging-detail-text">Private beds for all 4 players — no bunks</div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">🔥</div>
+          <div class="lodging-detail-text">Outdoor grill, backyard &amp; outdoor seating area</div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">📺</div>
+          <div class="lodging-detail-text">Smart TV in living room — college football Saturday, NFL Sunday</div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">🍳</div>
+          <div class="lodging-detail-text">Washer/dryer, full kitchen</div>
+        </div>
+        <div class="lodging-detail">
+          <div class="lodging-detail-icon">💰</div>
+          <div class="lodging-detail-text"><strong>Total: $1,385</strong> &nbsp;·&nbsp; $346/person for 4 nights</div>
+        </div>
+        <div class="lodging-note">Already booked and confirmed ✓ · Full refund if cancelled by September 24</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COSTS ── -->
+  <div class="tab-panel" id="tab-costs">
+    <h2 class="section-title">Cost Breakdown</h2>
+    <p class="section-subtitle">Per Person</p>
+
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Day</th>
+          <th>Per Person</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tot Hill Farm — greens fee</td>
+          <td>Friday</td>
+          <td>$180</td>
+        </tr>
+        <tr>
+          <td>Southern Pines GC — greens fee</td>
+          <td>Saturday</td>
+          <td>$245</td>
+        </tr>
+        <tr>
+          <td>Mid Pines — greens fee</td>
+          <td>Sunday</td>
+          <td>$285</td>
+        </tr>
+        <tr>
+          <td>Pine Needles — greens fee</td>
+          <td>Monday</td>
+          <td>$315</td>
+        </tr>
+        <tr>
+          <td>Lodging (Serene South Henley, 4 nights)</td>
+          <td>Thu–Mon</td>
+          <td>$346</td>
+        </tr>
+        <tr>
+          <td>Gambling ($25/round × 4)</td>
+          <td>Fri–Mon</td>
+          <td>$100</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2">Total Per Person</td>
+          <td>$1,471</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cost-box">
+      <div>
+        <div class="cost-box-label">All-In Per Person</div>
+        <div class="cost-box-sub">Golf + Lodging + Gambling · Confirmed prices</div>
+      </div>
+      <div class="cost-box-amount">$1,471</div>
+    </div>
+
+    <div class="spacer"></div>
+    <p style="font-size:0.78rem; color: var(--mid-gray); font-style: italic;">Does not include food, drink, or travel. All greens fees confirmed.</p>
+  </div>
+
+  <!-- ── STANDINGS ── -->
+  <div class="tab-panel" id="tab-standings">
+    <h2 class="section-title">Standings</h2>
+
+    <table class="standings-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Fri</th>
+          <th>Sat</th>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="player-name"><span class="rank-badge">—</span> Fritz</span></td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">—</td>
+        </tr>
+        <tr>
+          <td><span class="player-name"><span class="rank-badge">—</span> Ian</span></td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">—</td>
+        </tr>
+        <tr>
+          <td><span class="player-name"><span class="rank-badge">—</span> Matt</span></td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">—</td>
+        </tr>
+        <tr>
+          <td><span class="player-name"><span class="rank-badge">—</span> Charlie</span></td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">TBD</td>
+          <td class="tbd-cell">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <div class="round-section">
+      <div class="round-section-header">
+        <div class="round-section-title">Friday · Tot Hill Farm</div>
+        <div class="round-format-tag">Nassau</div>
+      </div>
+      <div class="round-section-body">
+        <div class="tbd-overlay">Results will appear after the round</div>
+      </div>
+    </div>
+
+    <div class="round-section">
+      <div class="round-section-header">
+        <div class="round-section-title">Saturday · Southern Pines</div>
+        <div class="round-format-tag">TBD</div>
+      </div>
+      <div class="round-section-body">
+        <div class="tbd-overlay">Results will appear after the round</div>
+      </div>
+    </div>
+
+    <div class="round-section">
+      <div class="round-section-header">
+        <div class="round-section-title">Sunday · Mid Pines</div>
+        <div class="round-format-tag">Stableford</div>
+      </div>
+      <div class="round-section-body">
+        <div class="tbd-overlay">Results will appear after the round</div>
+      </div>
+    </div>
+
+    <div class="round-section">
+      <div class="round-section-header">
+        <div class="round-section-title">Monday · Pine Needles</div>
+        <div class="round-format-tag">Net Stroke Play</div>
+      </div>
+      <div class="round-section-body">
+        <div class="tbd-overlay">Results will appear after the round</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HANDICAPS ── -->
+  <div class="tab-panel" id="tab-handicaps">
+    <h2 class="section-title">Handicaps</h2>
+
+    <p style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 1.25rem; line-height: 1.5;">Handicap indexes will be pulled on <strong style="color: var(--pine);">October 1</strong> for official course handicap calculations — current indexes below may change by then. All course info and handicap calculations sourced from GHIN. We may apply a 90% handicap allowance.</p>
+
+    <table class="handicap-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Index</th>
+          <th>Tot Hill</th>
+          <th>S. Pines</th>
+          <th>Mid Pines</th>
+          <th>Pine Needles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fritz</td>
+          <td>20.7</td>
+          <td>24</td>
+          <td>24</td>
+          <td>23</td>
+          <td>23</td>
+        </tr>
+        <tr>
+          <td>Ian</td>
+          <td>21.2</td>
+          <td>25</td>
+          <td>25</td>
+          <td>24</td>
+          <td>24</td>
+        </tr>
+        <tr>
+          <td>Matt</td>
+          <td>28.7</td>
+          <td>34</td>
+          <td>34</td>
+          <td>33</td>
+          <td>33</td>
+        </tr>
+        <tr>
+          <td>Charlie</td>
+          <td>~18.0</td>
+          <td>22</td>
+          <td>21</td>
+          <td>22</td>
+          <td>21</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="spacer"></div>
+    <div style="background: var(--cream); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.82rem; color: var(--mid-gray);">
+      <strong style="color: var(--pine);">Course Ratings Reference</strong><br><br>
+      <strong>Tot Hill Farm:</strong> Silver Tees · Rating 70.6 / Slope 135 · 6,180 yds<br>
+      <strong>Southern Pines:</strong> White Tees · Rating 70.3 / Slope 135 · 6,106 yds<br>
+      <strong>Mid Pines:</strong> White Tees · Rating 70.4 / Slope 136 · 6,048 yds<br>
+      <strong>Pine Needles:</strong> White Tees · Rating 70.0 / Slope 133 · 6,033 yds
+    </div>
+  </div>
+
+  <!-- ── BOOKING ── -->
+  <div class="tab-panel" id="tab-booking">
+    <h2 class="section-title">Booking Status</h2>
+    <div class="booking-list">
+
+      <div class="booking-item">
+        <div class="booking-top">
+          <div class="booking-course">Tot Hill Farm — Friday 10/9</div>
+          <span class="booking-badge badge-booked">✓ Booked</span>
+        </div>
+        <div class="booking-action">Confirmed at <strong>$180/person</strong>. Tee time secured.</div>
+        <div class="booking-notes">Tobacco Road placeholder — if Noteefy alerts open up a TR time, reassess.</div>
+      </div>
+
+      <div class="booking-item">
+        <div class="booking-top">
+          <div class="booking-course">Southern Pines — Saturday 10/10</div>
+          <span class="booking-badge badge-reminder">⏰ Reminder Set</span>
+        </div>
+        <div class="booking-action">Call <strong>(910) 692-6551</strong> on <strong>Sep 10 at 7:00 AM</strong> · Target tee time: 9:30am–1:30pm</div>
+        <div class="booking-notes">30-day booking window for public players. Book immediately when reminder fires.</div>
+      </div>
+
+      <div class="booking-item">
+        <div class="booking-top">
+          <div class="booking-course">Mid Pines — Sunday 10/11</div>
+          <span class="booking-badge badge-reminder">⏰ Reminder Set</span>
+        </div>
+        <div class="booking-action">Call <strong>(910) 692-6551</strong> on <strong>Sep 11 at 7:00 AM</strong> · Target tee time: 8:30am</div>
+        <div class="booking-notes">Same number as Southern Pines and Pine Needles — all Pines Resort properties.</div>
+      </div>
+
+      <div class="booking-item">
+        <div class="booking-top">
+          <div class="booking-course">Pine Needles — Monday 10/12</div>
+          <span class="booking-badge badge-reminder">⏰ Reminder Set</span>
+        </div>
+        <div class="booking-action">Call <strong>(910) 692-6551</strong> on <strong>Sep 12 at 7:00 AM</strong> · Target tee time: 8:30am–10:30am</div>
+        <div class="booking-notes">Last round — use locker room to shower afterward. Pack toiletry bag + change of clothes, leave in car.</div>
+      </div>
+
+      <div class="booking-item">
+        <div class="booking-top">
+          <div class="booking-course">VRBO — Serene South Henley</div>
+          <span class="booking-badge badge-booked">✓ Booked</span>
+        </div>
+        <div class="booking-action">Oct 8–12 · <strong>$1,385 total</strong> ($346/person) · <a href="https://www.vrbo.com/4388553" target="_blank" style="color: var(--pine-light);">VRBO #4388553</a></div>
+        <div class="booking-notes">Check-in Thursday, check-out Monday morning before Pine Needles.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>Southern Pines 2026</span> &nbsp;·&nbsp; Columbus Day Weekend &nbsp;·&nbsp; Fritz · Ian · Matt · Charlie
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+</body>
+</html>
