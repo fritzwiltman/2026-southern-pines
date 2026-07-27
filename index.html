@@ -727,6 +727,42 @@
     margin: 1.5rem 0;
   }
 
+  /* ── CAROUSEL ── */
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    margin: 0 -1.5rem;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  .carousel-slide {
+    min-width: 88%;
+    padding: 0 0.5rem 0 1.5rem;
+    box-sizing: border-box;
+  }
+  .carousel-slide:last-child { padding-right: 1.5rem; }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0 0.25rem;
+  }
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .carousel-dot.active {
+    background: var(--pine);
+    transform: scale(1.3);
+  }
+
   /* ── FOOTER ── */
   footer {
     background: var(--pine);
@@ -774,10 +810,9 @@
   <div class="tab-nav-inner">
     <button class="tab-btn active" onclick="showTab('itinerary')">Itinerary</button>
     <button class="tab-btn" onclick="showTab('courses')">Courses</button>
-    <button class="tab-btn" onclick="showTab('lodging')">Lodging</button>
+    <button class="tab-btn" onclick="showTab('logistics')">Logistics</button>
     <button class="tab-btn" onclick="showTab('costs')">Costs</button>
     <button class="tab-btn" onclick="showTab('standings')">Standings</button>
-    <button class="tab-btn" onclick="showTab('handicaps')">Handicaps</button>
     <button class="tab-btn" onclick="showTab('booking')">Booking</button>
   </div>
 </nav>
@@ -835,7 +870,7 @@
             <div class="day-detail-icon">🔥</div>
             <div class="day-detail-text">Return to house · Grill out · Beer die</div>
           </div>
-          <div class="day-note">🎯 Format: Nassau — 6-hole matches, rotating partners (everyone partners with everyone once)</div>
+          <div class="day-note">🎯 Format: Sixes — 6-hole matches, rotating partners (everyone partners with everyone once)</div>
         </div>
       </div>
 
@@ -860,7 +895,7 @@
             <div class="day-detail-icon">🏈</div>
             <div class="day-detail-text">College football — <strong>Alabama vs. Georgia</strong> (TBD) · <strong>Maryland at Ohio State</strong> (3:30–8pm)</div>
           </div>
-          <div class="day-note">🎯 Format: TBD — likely partner event</div>
+          <div class="day-note">🎯 Format: Nassau — Match play front 9, back 9, and overall. Presses allowed on any section once closed out, not automatic.</div>
         </div>
       </div>
 
@@ -885,7 +920,7 @@
             <div class="day-detail-icon">🏈</div>
             <div class="day-detail-text">NFL Sunday — <strong>Steelers vs. Colts @ 1pm</strong> · <strong>Bears at Packers @ 4:25pm</strong></div>
           </div>
-          <div class="day-note">🎯 Format: Stableford (individual)</div>
+          <div class="day-note">🎯 Format: Individual Net Stableford — Eagle+ 4pts · Birdie 3pts · Par 2pts · Bogey 1pt · Double bogey+ 0pts</div>
         </div>
       </div>
 
@@ -920,116 +955,141 @@
   <!-- ── COURSES ── -->
   <div class="tab-panel" id="tab-courses">
     <h2 class="section-title">The Courses</h2>
-    <div class="course-cards">
 
-      <div class="course-card">
-        <img class="course-img" src="https://www.top100golfcourses.com/img/courses/tot-hill-farm-golf-club_1.jpg" alt="Tot Hill Farm Golf Club" onerror="this.style.display='none'">
-        <div class="course-card-top">
-          <div class="course-card-main">
-            <div class="course-name">Tot Hill Farm Golf Club</div>
-            <div class="course-designer">Mike Strantz, 2000 · Asheboro, NC · ~1 hr from lodging</div>
-            <div class="course-stats">
-              <span class="course-stat">Par 72</span>
-              <span class="course-stat">Silver Tees · 6,180 yds</span>
-              <span class="course-stat">Rating 70.6</span>
-              <span class="course-stat">Slope 135</span>
+    <div class="carousel-container">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- Tot Hill Farm -->
+        <div class="carousel-slide">
+          <div class="course-card">
+            <img class="course-img" src="images/tothillfarm_12.webp" alt="Tot Hill Farm Golf Club">
+            <div class="course-card-top">
+              <div class="course-day-tag">Friday</div>
+              <div class="course-card-main">
+                <div class="course-name">Tot Hill Farm Golf Club</div>
+                <div class="course-designer">Mike Strantz, 2000 · Asheboro, NC · ~1 hr from lodging</div>
+                <div class="course-stats">
+                  <span class="course-stat">Par 72</span>
+                  <span class="course-stat">Silver Tees · 6,180 yds</span>
+                  <span class="course-stat">Rating 70.6</span>
+                  <span class="course-stat">Slope 135</span>
+                </div>
+                <div class="course-desc">A wild Mike Strantz design sharing the same bold DNA as Tobacco Road. Dramatic elevation changes, multi-tiered greens protected by rocks and streams, and blind approach shots make this one of the most adventurous rounds in the Carolinas. Recently restored by new ownership and playing better than ever.</div>
+                <div class="course-links">
+                  <a href="https://www.tothillfarm.com" class="course-link" target="_blank">🌐 Website</a>
+                  <a href="https://tothillfarm.com/scorecard/" class="course-link" target="_blank">📋 Scorecard</a>
+                </div>
+              </div>
             </div>
-            <div class="course-desc">A wild Mike Strantz design sharing the same bold DNA as Tobacco Road. Dramatic elevation changes, multi-tiered greens protected by rocks and streams, and blind approach shots make this one of the most adventurous rounds in the Carolinas. Recently restored by new ownership and playing better than ever.</div>
-            <div class="course-links">
-              <a href="https://www.tothillfarm.com" class="course-link" target="_blank">🌐 Website</a>
-              <a href="https://tothillfarm.com/scorecard/" class="course-link" target="_blank">📋 Scorecard</a>
+            <div class="course-fee">
+              <span>$180 / person · Confirmed &amp; Booked ✓</span>
+              <span class="course-format">Sixes</span>
             </div>
           </div>
         </div>
-        <div class="course-fee">
-          <span>$180 / person · Confirmed &amp; Booked ✓</span>
-          <span class="course-format">Nassau</span>
-        </div>
-      </div>
 
-      <div class="course-card">
-        <img class="course-img" src="https://golfcoursegurus.com/photos/courses/southern-pines-golf-club-1.jpg" alt="Southern Pines Golf Club" onerror="this.style.display='none'">
-        <div class="course-card-top">
-          <div class="course-day-tag">Saturday</div>
-          <div class="course-card-main">
-            <div class="course-name">Southern Pines Golf Club</div>
-            <div class="course-designer">Donald Ross, 1906 (Restored by Kyle Franz, 2021) · Southern Pines, NC · &lt;10 min from lodging</div>
-            <div class="course-stats">
-              <span class="course-stat">Par 71</span>
-              <span class="course-stat">White Tees · 6,106 yds</span>
-              <span class="course-stat">Rating 70.3</span>
-              <span class="course-stat">Slope 135</span>
+        <!-- Southern Pines -->
+        <div class="carousel-slide">
+          <div class="course-card">
+            <img class="course-img" src="images/southernpines.webp" alt="Southern Pines Golf Club">
+            <div class="course-card-top">
+              <div class="course-day-tag">Saturday</div>
+              <div class="course-card-main">
+                <div class="course-name">Southern Pines Golf Club</div>
+                <div class="course-designer">Donald Ross, 1906 (Restored by Kyle Franz, 2021) · Southern Pines, NC · &lt;10 min from lodging</div>
+                <div class="course-stats">
+                  <span class="course-stat">Par 71</span>
+                  <span class="course-stat">White Tees · 6,106 yds</span>
+                  <span class="course-stat">Rating 70.3</span>
+                  <span class="course-stat">Slope 135</span>
+                </div>
+                <div class="course-desc">One of the oldest Ross designs in the Sandhills, recently restored to its full glory by Kyle Franz. Short by modern standards but demands precise shot-making with a variety of approaches to each hole. The rugged Sandhills terrain and classic Ross greens make this a must-play — a true gem.</div>
+                <div class="course-links">
+                  <a href="https://www.southernpinesgolfclub.com" class="course-link" target="_blank">🌐 Website</a>
+                  <a href="https://southernpinesgolfclub.com/wp-content/uploads/sites/4/2026/05/scorecard-with-lost-hole.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+                </div>
+              </div>
             </div>
-            <div class="course-desc">One of the oldest Ross designs in the Sandhills, recently restored to its full glory by Kyle Franz. Short by modern standards but demands precise shot-making with a variety of approaches to each hole. The rugged Sandhills terrain and classic Ross greens make this a must-play — a true gem.</div>
-            <div class="course-links">
-              <a href="https://www.southernpinesgolfclub.com" class="course-link" target="_blank">🌐 Website</a>
-              <a href="https://southernpinesgolfclub.com/wp-content/uploads/sites/4/2026/05/scorecard-with-lost-hole.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            <div class="course-fee">
+              <span>$245 / person · Booking opens 9/10</span>
+              <span class="course-format">Nassau</span>
             </div>
           </div>
         </div>
-        <div class="course-fee">
-          <span>$245 / person · Booking opens 9/10</span>
-          <span class="course-format">Nassau</span>
-        </div>
-      </div>
 
-      <div class="course-card">
-        <img class="course-img" src="https://www.top100golfcourses.com/img/courses/mid-pines-inn-golf-club_1.jpg" alt="Mid Pines Inn & Golf Club" onerror="this.style.display='none'">
-        <div class="course-card-top">
-          <div class="course-day-tag">Sunday</div>
-          <div class="course-card-main">
-            <div class="course-name">Mid Pines Inn &amp; Golf Club</div>
-            <div class="course-designer">Donald Ross, 1921 · Southern Pines, NC · 3 min from lodging</div>
-            <div class="course-stats">
-              <span class="course-stat">Par 72</span>
-              <span class="course-stat">White Tees · 6,048 yds</span>
-              <span class="course-stat">Rating 70.4</span>
-              <span class="course-stat">Slope 136</span>
+        <!-- Mid Pines -->
+        <div class="carousel-slide">
+          <div class="course-card">
+            <img class="course-img" src="images/midpines.jpg" alt="Mid Pines Inn & Golf Club">
+            <div class="course-card-top">
+              <div class="course-day-tag">Sunday</div>
+              <div class="course-card-main">
+                <div class="course-name">Mid Pines Inn &amp; Golf Club</div>
+                <div class="course-designer">Donald Ross, 1921 · Southern Pines, NC · 3 min from lodging</div>
+                <div class="course-stats">
+                  <span class="course-stat">Par 72</span>
+                  <span class="course-stat">Ross Tees · 6,404 yds</span>
+                  <span class="course-stat">Rating 72.3</span>
+                  <span class="course-stat">Slope 138</span>
+                </div>
+                <div class="course-desc">Classic Donald Ross parkland layout perched atop a knoll at the historic Mid Pines Inn. Slight elevation changes, classic bunkering, and fast, sloping greens that will test every part of your game. Sister course to Pine Needles, just across the road. Walkers' paradise.</div>
+                <div class="course-links">
+                  <a href="https://www.midpinesinn.com" class="course-link" target="_blank">🌐 Website</a>
+                  <a href="https://midpinesinn.com/wp-content/uploads/sites/3/2026/05/MP-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+                </div>
+              </div>
             </div>
-            <div class="course-desc">Classic Donald Ross parkland layout perched atop a knoll at the historic Mid Pines Inn. Slight elevation changes, classic bunkering, and fast, sloping greens that will test every part of your game. Sister course to Pine Needles, just across the road. Walkers' paradise.</div>
-            <div class="course-links">
-              <a href="https://www.midpinesinn.com" class="course-link" target="_blank">🌐 Website</a>
-              <a href="https://midpinesinn.com/wp-content/uploads/sites/3/2026/05/MP-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            <div class="course-fee">
+              <span>$285 / person · Booking opens 9/11</span>
+              <span class="course-format">Ind. Net Stableford</span>
             </div>
           </div>
         </div>
-        <div class="course-fee">
-          <span>$285 / person · Booking opens 9/11</span>
-          <span class="course-format">Stableford</span>
-        </div>
-      </div>
 
-      <div class="course-card">
-        <img class="course-img" src="https://www.top100golfcourses.com/img/courses/pine-needles-lodge-golf-club_1.jpg" alt="Pine Needles Lodge & Golf Club" onerror="this.style.display='none'">
-        <div class="course-card-top">
-          <div class="course-day-tag">Monday</div>
-          <div class="course-card-main">
-            <div class="course-name">Pine Needles Lodge &amp; Golf Club</div>
-            <div class="course-designer">Donald Ross, 1927 · Southern Pines, NC · 3 min from lodging</div>
-            <div class="course-stats">
-              <span class="course-stat">Par 71</span>
-              <span class="course-stat">White Tees · 6,033 yds</span>
-              <span class="course-stat">Rating 70.0</span>
-              <span class="course-stat">Slope 133</span>
+        <!-- Pine Needles -->
+        <div class="carousel-slide">
+          <div class="course-card">
+            <img class="course-img" src="images/pineneedles.jpg" alt="Pine Needles Lodge & Golf Club">
+            <div class="course-card-top">
+              <div class="course-day-tag">Monday</div>
+              <div class="course-card-main">
+                <div class="course-name">Pine Needles Lodge &amp; Golf Club</div>
+                <div class="course-designer">Donald Ross, 1927 · Southern Pines, NC · 3 min from lodging</div>
+                <div class="course-stats">
+                  <span class="course-stat">Par 71</span>
+                  <span class="course-stat">Ross Tees · 6,400 yds</span>
+                  <span class="course-stat">Rating 71.9</span>
+                  <span class="course-stat">Slope 138</span>
+                </div>
+                <div class="course-desc">The crown jewel of the trip and the flagship of the Pines trio. Home to four U.S. Women's Open Championships and ranked among the best courses in America. Wide fairways with classic Ross greens that punish anything short or right. Full resort with locker rooms and showers — perfect final round.</div>
+                <div class="course-links">
+                  <a href="https://www.pineneedleslodge.com" class="course-link" target="_blank">🌐 Website</a>
+                  <a href="https://pineneedleslodge.com/wp-content/uploads/sites/2/2026/05/PN-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+                </div>
+              </div>
             </div>
-            <div class="course-desc">The crown jewel of the trip and the flagship of the Pines trio. Home to four U.S. Women's Open Championships and ranked among the best courses in America. Wide fairways with classic Ross greens that punish anything short or right. Full resort with locker rooms and showers — perfect final round.</div>
-            <div class="course-links">
-              <a href="https://www.pineneedleslodge.com" class="course-link" target="_blank">🌐 Website</a>
-              <a href="https://pineneedleslodge.com/wp-content/uploads/sites/2/2026/05/PN-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            <div class="course-fee">
+              <span>$315 / person · Booking opens 9/12</span>
+              <span class="course-format">Ind. Net Stroke Play</span>
             </div>
           </div>
         </div>
-        <div class="course-fee">
-          <span>$315 / person · Booking opens 9/12</span>
-          <span class="course-format">Net Stroke</span>
-        </div>
-      </div>
 
+      </div><!-- end carousel-track -->
+
+      <!-- Dot indicators -->
+      <div class="carousel-dots" id="carouselDots">
+        <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+        <span class="carousel-dot" onclick="goToSlide(1)"></span>
+        <span class="carousel-dot" onclick="goToSlide(2)"></span>
+        <span class="carousel-dot" onclick="goToSlide(3)"></span>
+      </div>
     </div>
+
   </div>
 
-  <!-- ── LODGING ── -->
-  <div class="tab-panel" id="tab-lodging">
+  <!-- ── LOGISTICS ── -->
+  <div class="tab-panel" id="tab-logistics">
     <h2 class="section-title">Lodging</h2>
     <div class="lodging-card">
       <div class="lodging-header">
@@ -1072,13 +1132,104 @@
         <div class="lodging-note">Already booked and confirmed ✓ · Full refund if cancelled by September 24</div>
       </div>
     </div>
+
+    <div class="spacer"></div>
+    <h2 class="section-title">Getting There</h2>
+
+    <!-- Fritz -->
+    <div class="day-card" style="margin-bottom: 0.75rem;">
+      <div class="day-card-header">
+        <div class="day-header-text" style="width:100%">
+          <div class="day-date">Washington, D.C.</div>
+          <div class="day-title">Fritz — Driving</div>
+        </div>
+      </div>
+      <div class="day-card-body">
+        <div class="day-detail">
+          <div class="day-detail-icon">🚗</div>
+          <div class="day-detail-text"><strong>~5–6 hrs</strong> · Drive straight to Southern Pines, arriving in time for 4pm check-in</div>
+        </div>
+        <div class="day-detail">
+          <div class="day-detail-icon">✈️</div>
+          <div class="day-detail-text">Picking up Von at RDU en route — RDU is ~1 hr north of Southern Pines</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Von -->
+    <div class="day-card" style="margin-bottom: 0.75rem;">
+      <div class="day-card-header">
+        <div class="day-header-text" style="width:100%">
+          <div class="day-date">New York City</div>
+          <div class="day-title">Von — Flying to RDU</div>
+        </div>
+      </div>
+      <div class="day-card-body">
+        <div class="day-detail">
+          <div class="day-detail-icon">✈️</div>
+          <div class="day-detail-text">Fly <strong>LGA → RDU</strong> · ~1.5 hr flight · Fritz will pick up at RDU · <a href="https://www.google.com/travel/flights/search?tfs=CBwQAhogEgoyMDI2LTEwLTA4KABqBwgBEgNMR0FyBwgBEgNSRFUaIBIKMjAyNi0xMC0xMigAagcIARIDUkRVcgcIARIDTEdBQAFIAXABggELCP___________wGYAQE&tfu=EgYIABAAGAA&hl=en-US&gl=US" target="_blank" style="color: var(--pine-light);">Search Google Flights →</a></div>
+        </div>
+        <div class="day-detail">
+          <div class="day-detail-icon">📍</div>
+          <div class="day-detail-text">Coordinate arrival time with Fritz. RDU pickup zones are on the lower level at Terminal 1 & 2.</div>
+        </div>
+        <div class="day-note">
+          <strong>Suggested — Delta · Round Trip · $322</strong><br>
+          ✈️ Thu Oct 8 · LGA → RDU · 12:59 PM – 2:49 PM · 1hr 50min · Nonstop<br>
+          ✈️ Mon Oct 12 · RDU → LGA · 5:19 PM – 6:59 PM · 1hr 40min · Nonstop<br>
+          <a href="https://www.google.com/travel/flights/s/TdCafbbaaLXwFzwy5" target="_blank" style="color: var(--pine-light);">View this exact itinerary →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matt & Charlie -->
+    <div class="day-card" style="margin-bottom: 0.75rem;">
+      <div class="day-card-header">
+        <div class="day-header-text" style="width:100%">
+          <div class="day-date">Pittsburgh, PA</div>
+          <div class="day-title">Matt & Charlie — Two Options</div>
+        </div>
+      </div>
+      <div class="day-card-body">
+        <div class="day-detail">
+          <div class="day-detail-icon">✈️</div>
+          <div class="day-detail-text">
+            <strong>Option A: Fly PIT → RDU</strong> · <a href="https://www.google.com/travel/flights/search?tfs=CBwQAhogEgoyMDI2LTEwLTA4KABqBwgBEgNQSVRyBwgBEgNSRFUaIBIKMjAyNi0xMC0xMigAagcIARIDUkRVcgcIARIDUElUQAFIAXABggELCP___________wGYAQE&tfu=EgIIACIA&hl=en-US&gl=US" target="_blank" style="color: var(--pine-light);">Search Google Flights →</a><br>
+            <span style="font-size: 0.83rem; color: var(--mid-gray);">~1.5 hr nonstop · American Airlines · Multiple departures daily</span><br>
+            <span style="color: var(--red-accent); font-size: 0.82rem; font-style: italic;">⚠️ Fritz either needs to rent a larger car for the group or we need a 2nd car — his car isn't big enough for 4 people + 4 bags.</span>
+          </div>
+        </div>
+        <div class="day-note">
+          <strong>Suggested — American Airlines · Round Trip · $401/person</strong><br>
+          ✈️ Thu Oct 8 · PIT → RDU · 4:35 PM – 6:04 PM · 1hr 29min · Nonstop<br>
+          ✈️ Mon Oct 12 · RDU → PIT · 6:35 PM – 8:05 PM · 1hr 30min · Nonstop<br>
+          <a href="https://www.google.com/travel/flights/s/gorTLH4gWVvxw4LG6" target="_blank" style="color: var(--pine-light);">View this exact itinerary →</a>
+        </div>
+        <div class="day-detail">
+          <div class="day-detail-icon">🚗</div>
+          <div class="day-detail-text">
+            <strong>Option B: Drive</strong><br>
+            <span style="font-size: 0.83rem; color: var(--mid-gray);">~8 hrs straight through</span>
+          </div>
+        </div>
+        <div class="day-note">
+          💡 Suggestion: Stop in D.C. Wednesday night to split the drive — makes it a comfortable 4–5 hrs each day. We'll need two cars either way, so if either of you drive we'll need one of you to drive to Southern Pines.
+        </div>
+      </div>
+    </div>
+
+    <div style="background: var(--cream); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.82rem; color: var(--mid-gray); margin-top: 0.5rem;">
+      <strong style="color: var(--pine);">RDU → Southern Pines</strong><br>
+      Raleigh-Durham Airport to the VRBO is approximately <strong>just over 1 hour</strong> (70 miles south on US-1). Easy drive, no tolls.
+    </div>
+
   </div>
 
   <!-- ── COSTS ── -->
   <div class="tab-panel" id="tab-costs">
     <h2 class="section-title">Cost Breakdown</h2>
-    <p class="section-subtitle">Per Person</p>
 
+    <p class="section-subtitle">Shared Costs — Everyone</p>
     <table class="cost-table">
       <thead>
         <tr>
@@ -1094,7 +1245,7 @@
           <td>$180</td>
         </tr>
         <tr>
-          <td>Southern Pines GC — greens fee</td>
+          <td>Southern Pines — greens fee</td>
           <td>Saturday</td>
           <td>$245</td>
         </tr>
@@ -1114,27 +1265,48 @@
           <td>$346</td>
         </tr>
         <tr>
-          <td>Gambling ($25/round × 4)</td>
+          <td>Gambling ($30/round × 4)</td>
           <td>Fri–Mon</td>
-          <td>$100</td>
+          <td>$120</td>
         </tr>
         <tr class="total-row">
-          <td colspan="2">Total Per Person</td>
-          <td>$1,471</td>
+          <td colspan="2">Subtotal (before travel)</td>
+          <td>$1,491</td>
         </tr>
       </tbody>
     </table>
 
-    <div class="cost-box">
-      <div>
-        <div class="cost-box-label">All-In Per Person</div>
-        <div class="cost-box-sub">Golf + Lodging + Gambling · Confirmed prices</div>
-      </div>
-      <div class="cost-box-amount">$1,471</div>
-    </div>
+    <div class="spacer"></div>
+
+    <p class="section-subtitle">Travel Costs — Flying (Von, Matt & Charlie)</p>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Route</th>
+          <th>Est. Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Von — Delta round trip</td>
+          <td>LGA ↔ RDU</td>
+          <td>$322</td>
+        </tr>
+        <tr>
+          <td>Matt & Charlie — American round trip</td>
+          <td>PIT ↔ RDU</td>
+          <td>$401/each</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2">All-In Total (Flying)</td>
+          <td>~$1,813–$1,892</td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="spacer"></div>
-    <p style="font-size:0.78rem; color: var(--mid-gray); font-style: italic;">Does not include food, drink, or travel. All greens fees confirmed.</p>
+    <p style="font-size:0.78rem; color: var(--mid-gray); font-style: italic;">Flight costs based on suggested itineraries. Does not include food, drink, or car rental if needed. All greens fees confirmed.</p>
   </div>
 
   <!-- ── STANDINGS ── -->
@@ -1193,9 +1365,14 @@
     <div class="round-section">
       <div class="round-section-header">
         <div class="round-section-title">Friday · Tot Hill Farm</div>
-        <div class="round-format-tag">Nassau</div>
+        <div class="round-format-tag">Sixes</div>
       </div>
       <div class="round-section-body">
+        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
+          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
+          $10 per 6-hole match · 3 matches total, rotating partners<br>
+          Presses optional once a match is closed out
+        </div>
         <div class="tbd-overlay">Results will appear after the round</div>
       </div>
     </div>
@@ -1203,9 +1380,14 @@
     <div class="round-section">
       <div class="round-section-header">
         <div class="round-section-title">Saturday · Southern Pines</div>
-        <div class="round-format-tag">TBD</div>
+        <div class="round-format-tag">Nassau</div>
       </div>
       <div class="round-section-body">
+        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
+          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
+          $10 front · $10 back · $10 overall<br>
+          Presses optional once closed out on any of the 3
+        </div>
         <div class="tbd-overlay">Results will appear after the round</div>
       </div>
     </div>
@@ -1213,9 +1395,15 @@
     <div class="round-section">
       <div class="round-section-header">
         <div class="round-section-title">Sunday · Mid Pines</div>
-        <div class="round-format-tag">Stableford</div>
+        <div class="round-format-tag">Individual Net Stableford</div>
       </div>
       <div class="round-section-body">
+        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
+          <strong style="color: var(--pine); font-size: 0.82rem;">Scoring</strong><br>
+          Eagle+ 4pts · Birdie 3pts · Par 2pts · Bogey 1pt · Double bogey+ 0pts<br>
+          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
+          75% pot to 1st ($90) · 25% pot to 2nd ($30)
+        </div>
         <div class="tbd-overlay">Results will appear after the round</div>
       </div>
     </div>
@@ -1223,19 +1411,22 @@
     <div class="round-section">
       <div class="round-section-header">
         <div class="round-section-title">Monday · Pine Needles</div>
-        <div class="round-format-tag">Net Stroke Play</div>
+        <div class="round-format-tag">Individual Net Stroke Play</div>
       </div>
       <div class="round-section-body">
+        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
+          <strong style="color: var(--pine); font-size: 0.82rem;">Rules</strong><br>
+          Pick up at net double bogey<br>
+          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
+          75% pot to 1st ($90) · 25% pot to 2nd ($30)
+        </div>
         <div class="tbd-overlay">Results will appear after the round</div>
       </div>
     </div>
-  </div>
 
-  <!-- ── HANDICAPS ── -->
-  <div class="tab-panel" id="tab-handicaps">
+    <hr class="divider">
     <h2 class="section-title">Handicaps</h2>
-
-    <p style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 1.25rem; line-height: 1.5;">Handicap indexes will be pulled on <strong style="color: var(--pine);">October 1</strong> for official course handicap calculations — current indexes below may change by then. All course info and handicap calculations sourced from GHIN. We may apply a 90% handicap allowance.</p>
+    <p style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 1.25rem; line-height: 1.5;">Indexes will be pulled on <strong style="color: var(--pine);">October 1</strong> — current numbers may change. All calculations sourced from GHIN. We may apply a 90% allowance.</p>
 
     <table class="handicap-table">
       <thead>
@@ -1251,17 +1442,17 @@
       <tbody>
         <tr>
           <td>Fritz</td>
-          <td>20.0</td>
+          <td>18.7</td>
+          <td>22</td>
+          <td>22</td>
           <td>23</td>
-          <td>23</td>
-          <td>23</td>
-          <td>23</td>
+          <td>24</td>
         </tr>
         <tr>
           <td>Von</td>
-          <td>11.2</td>
+          <td>9.3</td>
           <td>13</td>
-          <td>13</td>
+          <td>12</td>
           <td>12</td>
           <td>12</td>
         </tr>
@@ -1289,10 +1480,14 @@
       <strong style="color: var(--pine);">Course Ratings Reference</strong><br><br>
       <strong>Tot Hill Farm:</strong> Silver Tees · Rating 70.6 / Slope 135 · 6,180 yds<br>
       <strong>Southern Pines:</strong> White Tees · Rating 70.3 / Slope 135 · 6,106 yds<br>
-      <strong>Mid Pines:</strong> White Tees · Rating 70.4 / Slope 136 · 6,048 yds<br>
-      <strong>Pine Needles:</strong> White Tees · Rating 70.0 / Slope 133 · 6,033 yds
+      <strong>Mid Pines:</strong> Ross Tees · Rating 72.3 / Slope 138 · 6,404 yds<br>
+      <strong>Pine Needles:</strong> Ross Tees · Rating 71.9 / Slope 138 · 6,400 yds
     </div>
+
   </div>
+
+  <!-- ── HANDICAPS (merged into Standings) ── -->
+  <div class="tab-panel" id="tab-handicaps" style="display:none"></div>
 
   <!-- ── BOOKING ── -->
   <div class="tab-panel" id="tab-booking">
@@ -1347,6 +1542,9 @@
     </div>
   </div>
 
+  <!-- ── TRAVEL (removed, merged into Logistics) ── -->
+  <div class="tab-panel" id="tab-travel" style="display:none"></div>
+
 </div>
 
 <footer>
@@ -1354,12 +1552,97 @@
 </footer>
 
 <script>
-  function showTab(id) {
+  const TABS = ['itinerary','courses','logistics','costs','standings','booking'];
+
+  function showTab(id, pushState = true) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    event.currentTarget.classList.add('active');
+    const panel = document.getElementById('tab-' + id);
+    if (panel) panel.classList.add('active');
+    const btn = document.querySelector(`[onclick="showTab('${id}')"]`);
+    if (btn) btn.classList.add('active');
+    if (pushState) history.pushState(null, '', '#' + id);
   }
+
+  function loadFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && TABS.includes(hash)) {
+      showTab(hash, false);
+    } else {
+      showTab('itinerary', false);
+    }
+  }
+
+  window.addEventListener('popstate', loadFromHash);
+  loadFromHash();
+
+  // ── CAROUSEL ──
+  let currentSlide = 0;
+  const totalSlides = 4;
+  const track = document.getElementById('carouselTrack');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  function goToSlide(index) {
+    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+    const slideWidth = track.querySelector('.carousel-slide').offsetWidth;
+    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchDeltaX = 0;
+
+  track.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    track.style.transition = 'none';
+  }, { passive: true });
+
+  track.addEventListener('touchmove', e => {
+    touchDeltaX = e.touches[0].clientX - touchStartX;
+    const slideWidth = track.querySelector('.carousel-slide').offsetWidth;
+    track.style.transform = `translateX(${-currentSlide * slideWidth + touchDeltaX}px)`;
+  }, { passive: true });
+
+  track.addEventListener('touchend', () => {
+    track.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    if (touchDeltaX < -50) goToSlide(currentSlide + 1);
+    else if (touchDeltaX > 50) goToSlide(currentSlide - 1);
+    else goToSlide(currentSlide);
+    touchDeltaX = 0;
+  });
+
+  // Mouse drag support for desktop
+  let mouseStartX = 0;
+  let isDragging = false;
+
+  track.addEventListener('mousedown', e => {
+    mouseStartX = e.clientX;
+    isDragging = true;
+    track.style.transition = 'none';
+    track.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const delta = e.clientX - mouseStartX;
+    const slideWidth = track.querySelector('.carousel-slide').offsetWidth;
+    track.style.transform = `translateX(${-currentSlide * slideWidth + delta}px)`;
+  });
+
+  window.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    track.style.cursor = '';
+    const delta = e.clientX - mouseStartX;
+    if (delta < -50) goToSlide(currentSlide + 1);
+    else if (delta > 50) goToSlide(currentSlide - 1);
+    else goToSlide(currentSlide);
+  });
+
+  // Recalculate on resize
+  window.addEventListener('resize', () => goToSlide(currentSlide));
 </script>
 </body>
 </html>
