@@ -19,7 +19,6 @@
     --mid-gray: #5a5a5a;
     --light-gray: #e8e4de;
     --gold: #c9a84c;
-    --gold-light: #e8c96a;
     --red-accent: #8b2e2e;
   }
 
@@ -202,7 +201,6 @@
     line-height: 1;
     min-width: 2rem;
   }
-  .day-header-text {}
   .day-date {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -393,34 +391,6 @@
   }
   .cost-table tr.total-row td:last-child { font-family: 'DM Mono', monospace; font-size: 0.9rem; }
 
-  .cost-box {
-    background: var(--pine);
-    border-radius: 10px;
-    padding: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
-  }
-  .cost-box-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--sage);
-  }
-  .cost-box-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--sand);
-  }
-  .cost-box-sub {
-    font-size: 0.75rem;
-    color: var(--sage);
-    margin-top: 0.15rem;
-  }
-
   /* ── LODGING ── */
   .lodging-card {
     background: #fff;
@@ -462,16 +432,6 @@
   .lodging-detail-text strong { color: var(--charcoal); }
   .lodging-detail-text a { color: var(--pine-light); text-decoration: none; }
   .lodging-detail-text a:hover { text-decoration: underline; }
-  .lodging-note {
-    background: var(--cream);
-    border-left: 3px solid var(--gold);
-    padding: 0.6rem 0.85rem;
-    border-radius: 0 6px 6px 0;
-    font-size: 0.82rem;
-    color: var(--mid-gray);
-    font-style: italic;
-    margin-top: 0.25rem;
-  }
 
   /* ── BOOKING STATUS ── */
   .booking-list { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -575,41 +535,8 @@
   .rank-1 { background: var(--gold); color: var(--pine); }
   .earnings-cell { color: var(--charcoal); }
   .earnings-pos { color: #1a5e2a; }
-  .earnings-neg { color: var(--red-accent); }
-  .earnings-zero { color: var(--mid-gray); }
   .tbd-cell { color: var(--light-gray); font-size: 0.72rem; letter-spacing: 0.1em; }
 
-  .round-result-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.83rem;
-    margin-bottom: 1.25rem;
-  }
-  .round-result-table th {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--sage);
-    padding: 0.45rem 0.6rem;
-    border-bottom: 1px solid var(--pine);
-    text-align: left;
-  }
-  .round-result-table th:not(:first-child) { text-align: center; }
-  .round-result-table td {
-    padding: 0.6rem;
-    border-bottom: 1px solid var(--light-gray);
-    color: var(--mid-gray);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-  }
-  .round-result-table td:first-child {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    color: var(--charcoal);
-    font-size: 0.85rem;
-  }
-  .round-result-table td:not(:first-child) { text-align: center; }
   .round-section {
     background: #fff;
     border: 1px solid var(--light-gray);
@@ -642,15 +569,213 @@
     border-radius: 3px;
   }
   .round-section-body { padding: 0.75rem 1.1rem 1rem; }
-  .tbd-overlay {
-    text-align: center;
-    padding: 1.5rem;
-    color: var(--light-gray);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+  .standings-note {
+    font-size: 0.78rem;
+    color: var(--mid-gray);
+    margin: -0.75rem 0 1.5rem;
+    line-height: 1.5;
   }
+
+  /* ── SCORECARDS ── */
+  .sc-rules {
+    display: grid;
+    grid-template-columns: 4.6rem 1fr;
+    gap: 0.3rem 0.75rem;
+    margin: 0 0 0.9rem;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+  .sc-rules dt {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    padding-top: 0.15rem;
+  }
+  .sc-rules dd { color: var(--charcoal); }
+  .sc-note {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 0.45rem 0.75rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.75rem;
+    color: var(--mid-gray);
+    margin-bottom: 0.6rem;
+  }
+  .sc-note strong { color: var(--red-accent); }
+  .sc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.9rem;
+    font-size: 0.68rem;
+    color: var(--mid-gray);
+    margin-bottom: 0.75rem;
+  }
+  .sc-legend-dot { color: var(--pine-light); font-size: 0.55rem; }
+  .sc-key {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0.75rem 1rem 0.1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.78rem;
+    color: var(--pine);
+  }
+  .sc-key .sc-legend { margin: 0.35rem 0 0.65rem; }
+  .sc-teams {
+    font-size: 0.78rem;
+    color: var(--mid-gray);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+  .sc-teams strong { color: var(--pine); }
+  .sc-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+  }
+  /* Wide enough to read on a phone: the card scrolls sideways inside .sc-wrap, with the
+     names pinned left and Out / In / Tot pinned right. */
+  .sc-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .sc-table th, .sc-table td {
+    padding: 0.4rem 0.2rem;
+    min-width: 2.1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--light-gray);
+    font-weight: 400;
+  }
+  .sc-table tr > :first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #fff;
+    text-align: left;
+    padding-left: 0.5rem;
+    min-width: 4.4rem;
+    max-width: 5rem;
+    box-shadow: 1px 0 0 var(--light-gray);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.2;
+  }
+  .sc-hole-row th, .sc-table .sc-hole-row > :first-child {
+    background: var(--pine);
+    color: var(--cream);
+    font-weight: 500;
+    vertical-align: top;
+  }
+  .sc-par-row > *, .sc-si-row > *, .sc-table .sc-par-row > :first-child, .sc-table .sc-si-row > :first-child {
+    background: var(--cream);
+    color: var(--sage);
+    font-size: 0.62rem;
+  }
+  .sc-table .sc-tot {
+    position: sticky;
+    right: 0;
+    z-index: 1;
+    min-width: 2.4rem;
+    width: 2.4rem;
+    background: var(--cream);
+    font-weight: 500;
+  }
+  .sc-table .sc-tot-in { right: 2.4rem; }
+  .sc-table .sc-tot-first { box-shadow: -1px 0 0 var(--light-gray); }
+  .sc-hole-row .sc-tot { background: var(--pine-mid); }
+  .sc-player { font-weight: 600; color: var(--pine); }
+  .sc-ph {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: var(--sage);
+  }
+  .sc-ph.tbd { color: var(--red-accent); }
+  .sc-cell { vertical-align: bottom; color: var(--charcoal); }
+  .sc-dots {
+    display: block;
+    height: 0.5rem;
+    font-size: 0.42rem;
+    line-height: 0.5rem;
+    letter-spacing: 1px;
+    color: var(--pine-light);
+  }
+  .sc-empty { color: var(--light-gray); }
+  .sc-net { color: var(--pine-light); font-size: 0.7rem; }
+  .sc-partial { color: var(--sage); }
+  .sc-table .match-start { border-left: 2px solid #cbc4b8; }
+  .sc-table .press-start { border-left: 2px dotted var(--gold); }
+  .press-pill {
+    display: inline-block;
+    font-size: 0.5rem;
+    line-height: 1;
+    background: var(--gold);
+    color: var(--pine);
+    border-radius: 6px;
+    padding: 0.1rem 0.25rem;
+    margin-top: 0.15rem;
+  }
+  .sc-hole-row .press-pill { display: block; width: max-content; margin: 0.15rem auto 0; }
+  .sc-trk > * > * { font-size: 0.7rem; }
+  .sc-trk-first > * { border-top: 2px solid var(--pine); }
+  .sc-table .sc-trk-label { color: var(--mid-gray); font-weight: 500; }
+  .trk-off { background: var(--light-gray); }
+  .trk-a { color: var(--pine); font-weight: 600; }
+  .trk-b { color: var(--red-accent); font-weight: 600; }
+  .trk-as { color: var(--mid-gray); }
+  .bet-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .bet-box {
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 0.55rem 0.65rem;
+    background: var(--warm-white);
+  }
+  .bet-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .bet-box-value { font-size: 0.9rem; font-weight: 600; color: var(--pine); margin-top: 0.15rem; }
+  .bet-box-value.tbd { color: var(--light-gray); font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; }
+  .bet-box-sub { font-size: 0.68rem; color: var(--mid-gray); margin-top: 0.1rem; }
+  .bet-box-press {
+    font-size: 0.68rem;
+    color: var(--mid-gray);
+    margin-top: 0.4rem;
+    padding-top: 0.35rem;
+    border-top: 1px dotted var(--light-gray);
+    line-height: 1.4;
+  }
+  .bet-box-press strong, .bet-box-sub strong { color: var(--pine); font-weight: 600; }
+  .bet-box-press .press-pill { margin-top: 0; }
+  .bet-box.net { background: var(--pine); border-color: var(--pine); }
+  .bet-box.net .bet-box-label { color: var(--sand); }
+  .bet-box.net .bet-box-value { color: var(--cream); }
+  .bet-box.net .bet-box-value.tbd { color: var(--sage); }
+  .bet-box.net .bet-box-sub { color: var(--sage); }
+  @media (max-width: 500px) {
+    .round-section-body { padding: 0.75rem 0.6rem 1rem; }
+    .standings-table th, .standings-table td { padding: 0.6rem 0.3rem; }
+    .standings-table th:first-child, .standings-table td:first-child { padding-left: 0; }
+    .standings-table td:not(:first-child) { font-size: 0.74rem; }
+    .handicap-table th, .handicap-table td { padding: 0.55rem 0.3rem; }
+    .handicap-table th:first-child, .handicap-table td:first-child { padding-left: 0; }
+  }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
   /* ── HANDICAPS ── */
   .handicap-table {
@@ -685,82 +810,12 @@
   .handicap-table td:not(:first-child) { text-align: center; }
   .handicap-table tr:last-child td { border-bottom: none; }
 
-  /* ── INFO CARDS ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-  @media (max-width: 500px) { .info-grid { grid-template-columns: 1fr; } }
-  .info-card {
-    background: #fff;
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  }
-  .info-card-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 0.3rem;
-  }
-  .info-card-value {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--pine);
-  }
-  .info-card-sub {
-    font-size: 0.78rem;
-    color: var(--mid-gray);
-    margin-top: 0.2rem;
-  }
-
   /* ── UTIL ── */
   .spacer { height: 1.5rem; }
   .divider {
     border: none;
     border-top: 1px solid var(--light-gray);
     margin: 1.5rem 0;
-  }
-
-  /* ── CAROUSEL ── */
-  .carousel-container {
-    position: relative;
-    overflow: hidden;
-    margin: 0 -1.5rem;
-  }
-  .carousel-track {
-    display: flex;
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-  }
-  .carousel-slide {
-    min-width: 88%;
-    padding: 0 0.5rem 0 1.5rem;
-    box-sizing: border-box;
-  }
-  .carousel-slide:last-child { padding-right: 1.5rem; }
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 0 0.25rem;
-  }
-  .carousel-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--light-gray);
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .carousel-dot.active {
-    background: var(--pine);
-    transform: scale(1.3);
   }
 
   /* ── FOOTER ── */
@@ -945,17 +1000,17 @@
           <div class="day-number">5</div>
           <div class="day-header-text">
             <div class="day-date">Monday · Oct 12</div>
-            <div class="day-title">Pine Needles or Talamore · Drive Home</div>
+            <div class="day-title">Talamore · Drive Home</div>
           </div>
         </div>
         <div class="day-card-body">
           <div class="day-detail">
             <div class="day-detail-icon">⛳</div>
-            <div class="day-detail-text"><strong>Pine Needles Lodge &amp; Golf Club</strong> · Tee time: <strong>TBD</strong> · Donald Ross Design · $315/person</div>
+            <div class="day-detail-text"><strong>Talamore Golf Club</strong> · Tee time: <strong>8:51 AM</strong> · Rees Jones Design · $229/person</div>
           </div>
           <div class="day-detail">
             <div class="day-detail-icon">🔄</div>
-            <div class="day-detail-text"><strong>Backup: Talamore Golf Club</strong> · Tee time: <strong>8:51 AM</strong> (booked) · $229/person</div>
+            <div class="day-detail-text"><strong>Possible swap: Pine Needles Lodge &amp; Golf Club</strong> · Fritz is trying to get an early tee time · Donald Ross Design · $315/person</div>
           </div>
           <div class="day-detail">
             <div class="day-detail-icon">🚿</div>
@@ -1058,40 +1113,13 @@
         </div>
       </div>
 
-      <!-- Pine Needles -->
+      <!-- Talamore -->
       <div class="course-card">
-        <img class="course-img" src="images/pineneedles.jpg" alt="Pine Needles Lodge & Golf Club">
+        <img class="course-img" src="images/talamore.jpg" alt="Talamore Golf Club">
         <div class="course-card-top">
           <div class="course-day-tag">Monday</div>
           <div class="course-card-main">
-            <div class="course-name">Pine Needles Lodge &amp; Golf Club</div>
-            <div class="course-designer">Donald Ross, 1927 · Southern Pines, NC · 3 min from lodging</div>
-            <div class="course-stats">
-              <span class="course-stat">Par 71</span>
-              <span class="course-stat">Ross Tees · 6,400 yds</span>
-              <span class="course-stat">Rating 71.9</span>
-              <span class="course-stat">Slope 138</span>
-            </div>
-            <div class="course-desc">The crown jewel of the trip and the flagship of the Pines trio. Home to four U.S. Women's Open Championships and ranked among the best courses in America. Wide fairways with classic Ross greens that punish anything short or right. Full resort with locker rooms and showers — perfect final round.</div>
-            <div class="course-links">
-              <a href="https://www.pineneedleslodge.com" class="course-link" target="_blank">🌐 Website</a>
-              <a href="https://pineneedleslodge.com/wp-content/uploads/sites/2/2026/05/PN-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
-            </div>
-          </div>
-        </div>
-        <div class="course-fee">
-          <span>$315 / person · Tee time TBD</span>
-          <span class="course-format">Ind. Net Stroke Play</span>
-        </div>
-      </div>
-
-      <!-- Talamore (Backup) -->
-      <div class="course-card" style="border: 2px dashed var(--sage); opacity: 0.9;">
-        <img class="course-img" src="images/talamore.jpg" alt="Talamore Golf Club">
-        <div class="course-card-top">
-          <div class="course-day-tag" style="background: var(--sage);">Mon (Alt)</div>
-          <div class="course-card-main">
-            <div class="course-name">Talamore Golf Club <span style="font-size: 0.75rem; color: var(--sage); font-family: 'DM Mono', monospace;">(Backup)</span></div>
+            <div class="course-name">Talamore Golf Club</div>
             <div class="course-designer">Rees Jones · Southern Pines, NC · ~10 min from lodging</div>
             <div class="course-stats">
               <span class="course-stat">Par 71</span>
@@ -1106,8 +1134,35 @@
             </div>
           </div>
         </div>
-        <div class="course-fee" style="background: var(--sage);">
+        <div class="course-fee">
           <span>$229 / person · 8:51 AM</span>
+          <span class="course-format">Ind. Net Stroke Play</span>
+        </div>
+      </div>
+
+      <!-- Pine Needles (possible swap) -->
+      <div class="course-card" style="border: 2px dashed var(--sage); opacity: 0.9;">
+        <img class="course-img" src="images/pineneedles.jpg" alt="Pine Needles Lodge & Golf Club">
+        <div class="course-card-top">
+          <div class="course-day-tag" style="background: var(--sage);">Mon (Alt)</div>
+          <div class="course-card-main">
+            <div class="course-name">Pine Needles Lodge &amp; Golf Club <span style="font-size: 0.75rem; color: var(--sage); font-family: 'DM Mono', monospace;">(If we get an early tee time)</span></div>
+            <div class="course-designer">Donald Ross, 1927 · Southern Pines, NC · 3 min from lodging</div>
+            <div class="course-stats">
+              <span class="course-stat">Par 71</span>
+              <span class="course-stat">Ross Tees · 6,400 yds</span>
+              <span class="course-stat">Rating 71.9</span>
+              <span class="course-stat">Slope 138</span>
+            </div>
+            <div class="course-desc">The crown jewel of the trip and the flagship of the Pines trio. Home to four U.S. Women's Open Championships and ranked among the best courses in America. Wide fairways with classic Ross greens that punish anything short or right. Full resort with locker rooms and showers — perfect final round.</div>
+            <div class="course-links">
+              <a href="https://www.pineneedleslodge.com" class="course-link" target="_blank">🌐 Website</a>
+              <a href="https://pineneedleslodge.com/wp-content/uploads/sites/2/2026/05/PN-Scorecard-1.pdf" class="course-link" target="_blank">📋 Scorecard</a>
+            </div>
+          </div>
+        </div>
+        <div class="course-fee" style="background: var(--sage);">
+          <span>$315 / person · Trying for an early tee time</span>
           <span class="course-format">Ind. Net Stroke Play</span>
         </div>
       </div>
@@ -1283,9 +1338,9 @@
           <td>$305</td>
         </tr>
         <tr>
-          <td>Pine Needles — greens fee</td>
+          <td>Talamore — greens fee</td>
           <td>Monday</td>
-          <td>$315</td>
+          <td>$229</td>
         </tr>
         <tr>
           <td>Lodging (Serene South Henley, 4 nights)</td>
@@ -1299,12 +1354,12 @@
         </tr>
         <tr class="total-row">
           <td colspan="2">Subtotal (before travel)</td>
-          <td>$1,511</td>
+          <td>$1,425</td>
         </tr>
         <tr>
-          <td style="color: var(--mid-gray); font-style: italic;">Talamore — if played instead of Pine Needles</td>
+          <td style="color: var(--mid-gray); font-style: italic;">Pine Needles — if we get an early tee time instead (+$86)</td>
           <td style="color: var(--mid-gray); font-style: italic;">Monday</td>
-          <td style="color: var(--mid-gray); font-style: italic;">$229</td>
+          <td style="color: var(--mid-gray); font-style: italic;">$315</td>
         </tr>
       </tbody>
     </table>
@@ -1317,172 +1372,20 @@
   <div class="tab-panel" id="tab-standings">
     <h2 class="section-title">Standings</h2>
 
-    <table class="standings-table">
-      <thead>
-        <tr>
-          <th>Player</th>
-          <th>Fri</th>
-          <th>Sat</th>
-          <th>Sun</th>
-          <th>Mon</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="player-name"><span class="rank-badge">—</span> Fritz</span></td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">—</td>
-        </tr>
-        <tr>
-          <td><span class="player-name"><span class="rank-badge">—</span> Von</span></td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">—</td>
-        </tr>
-        <tr>
-          <td><span class="player-name"><span class="rank-badge">—</span> Matt</span></td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">—</td>
-        </tr>
-        <tr>
-          <td><span class="player-name"><span class="rank-badge">—</span> Charlie</span></td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">TBD</td>
-          <td class="tbd-cell">—</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Rendered from ROUNDS in the scorecard script below -->
+    <table class="standings-table" id="standings-table"></table>
+    <p class="standings-note">What each winner came out ahead that day, after their $30 (presses included). A round shows TBD until it's posted.</p>
 
     <hr class="divider">
 
-    <div class="round-section">
-      <div class="round-section-header">
-        <div class="round-section-title">Friday · Tot Hill Farm</div>
-        <div class="round-format-tag">Sixes</div>
-      </div>
-      <div class="round-section-body">
-        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
-          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
-          $10 per 6-hole match · 3 matches total, rotating partners<br>
-          Presses optional once a match is closed out
-        </div>
-        <div class="tbd-overlay">Results will appear after the round</div>
-      </div>
-    </div>
-
-    <div class="round-section">
-      <div class="round-section-header">
-        <div class="round-section-title">Saturday · Southern Pines</div>
-        <div class="round-format-tag">Nassau</div>
-      </div>
-      <div class="round-section-body">
-        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
-          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
-          $10 front · $10 back · $10 overall<br>
-          Presses optional once closed out on any of the 3
-        </div>
-        <div class="tbd-overlay">Results will appear after the round</div>
-      </div>
-    </div>
-
-    <div class="round-section">
-      <div class="round-section-header">
-        <div class="round-section-title">Sunday · Mid Pines</div>
-        <div class="round-format-tag">Ind. Net Stableford</div>
-      </div>
-      <div class="round-section-body">
-        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
-          <strong style="color: var(--pine); font-size: 0.82rem;">Scoring</strong><br>
-          Eagle+ 4pts · Birdie 3pts · Par 2pts · Bogey 1pt · Double bogey+ 0pts<br>
-          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
-          75% pot to 1st ($90) · 25% pot to 2nd ($30)
-        </div>
-        <div class="tbd-overlay">Results will appear after the round</div>
-      </div>
-    </div>
-
-    <div class="round-section">
-      <div class="round-section-header">
-        <div class="round-section-title">Monday · Pine Needles <span style="font-size: 0.72rem; opacity: 0.7;">(or Talamore)</span></div>
-        <div class="round-format-tag">Ind. Net Stroke Play</div>
-      </div>
-      <div class="round-section-body">
-        <div style="font-size:0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; line-height: 1.6;">
-          <strong style="color: var(--pine); font-size: 0.82rem;">Rules</strong><br>
-          Pick up at net double bogey<br>
-          <strong style="color: var(--pine); font-size: 0.82rem;">Payout</strong><br>
-          75% pot to 1st ($90) · 25% pot to 2nd ($30)
-        </div>
-        <div class="tbd-overlay">Results will appear after the round</div>
-      </div>
-    </div>
+    <div id="round-cards"></div>
 
     <hr class="divider">
     <h2 class="section-title">Handicaps</h2>
-    <p style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 1.25rem; line-height: 1.5;">Indexes will be pulled on <strong style="color: var(--pine);">October 1</strong> — current numbers may change. All calculations sourced from GHIN. We may apply a 90% allowance.</p>
+    <p style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 1.25rem; line-height: 1.5;">Indexes will be pulled on <strong style="color: var(--pine);">October 1</strong> — current numbers may change. All calculations sourced from GHIN. Shown as course handicap / 90% allowance; on the scorecards, strokes are then taken off the low man (Von).</p>
 
-    <table class="handicap-table">
-      <thead>
-        <tr>
-          <th>Player</th>
-          <th>Index</th>
-          <th>Tot Hill</th>
-          <th>S. Pines</th>
-          <th>Mid Pines</th>
-          <th>Pine Needles</th>
-          <th>Talamore</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Fritz</td>
-          <td>18.6</td>
-          <td>22</td>
-          <td>22</td>
-          <td>23</td>
-          <td>24</td>
-          <td>22</td>
-        </tr>
-        <tr>
-          <td>Von</td>
-          <td>8.1</td>
-          <td>9</td>
-          <td>9</td>
-          <td>10</td>
-          <td>11</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>Matt</td>
-          <td>28.7</td>
-          <td>34</td>
-          <td>34</td>
-          <td>35</td>
-          <td>36</td>
-          <td>34</td>
-        </tr>
-        <tr>
-          <td>Charlie</td>
-          <td>18.0</td>
-          <td>21</td>
-          <td>21</td>
-          <td>22</td>
-          <td>23</td>
-          <td>21</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Rendered from HANDICAP_INDEX + COURSES in the scorecard script below -->
+    <div class="table-scroll"><table class="handicap-table" id="handicap-table"></table></div>
 
     <div class="spacer"></div>
     <div style="background: var(--cream); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.82rem; color: var(--mid-gray);">
@@ -1490,14 +1393,11 @@
       <strong>Tot Hill Farm:</strong> Silver Tees · Rating 70.6 / Slope 135 · 6,180 yds<br>
       <strong>Southern Pines:</strong> White Tees · Rating 70.3 / Slope 135 · 6,106 yds<br>
       <strong>Mid Pines:</strong> Ross Tees · Rating 72.3 / Slope 138 · 6,404 yds<br>
-      <strong>Pine Needles:</strong> Ross Tees · Rating 71.9 / Slope 138 · 6,400 yds<br>
-      <strong>Talamore (backup):</strong> Blue Tees · Rating 70.9 / Slope 134 · 6,268 yds
+      <strong>Talamore:</strong> Blue Tees · Rating 70.9 / Slope 134 · 6,268 yds<br>
+      <strong>Pine Needles (possible swap):</strong> Ross Tees · Rating 71.9 / Slope 138 · 6,400 yds
     </div>
 
   </div>
-
-  <!-- ── HANDICAPS (merged into Standings) ── -->
-  <div class="tab-panel" id="tab-handicaps" style="display:none"></div>
 
   <!-- ── BOOKING ── -->
   <div class="tab-panel" id="tab-booking">
@@ -1510,7 +1410,6 @@
           <span class="booking-badge badge-booked">✓ Booked</span>
         </div>
         <div class="booking-action">Confirmed at <strong>$180/person</strong>. Tee time secured.</div>
-        <div class="booking-notes">Tobacco Road placeholder — if Noteefy alerts open up a TR time, reassess.</div>
       </div>
 
       <div class="booking-item">
@@ -1533,20 +1432,20 @@
 
       <div class="booking-item">
         <div class="booking-top">
-          <div class="booking-course">Pine Needles — Monday 10/12</div>
-          <span class="booking-badge badge-reminder">⏰ Pending</span>
+          <div class="booking-course">Talamore — Monday 10/12</div>
+          <span class="booking-badge badge-booked">✓ Booked</span>
         </div>
-        <div class="booking-action">Call <strong>(910) 692-6551</strong> on <strong>Sep 12 at 7:00 AM</strong> · Target tee time: 8:30am–10:30am</div>
-        <div class="booking-notes">Primary Monday target — still working on getting an early enough tee time. Last round — use locker room to shower afterward. Pack toiletry bag + change of clothes, leave in car.</div>
+        <div class="booking-action">Tee time: <strong>8:51 AM</strong> · $229/person · Rees Jones Design · Southern Pines</div>
+        <div class="booking-notes">Monday's round. Will cancel only if an early Pine Needles tee time comes through.</div>
       </div>
 
       <div class="booking-item">
         <div class="booking-top">
-          <div class="booking-course">Talamore — Monday 10/12 (Backup)</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
+          <div class="booking-course">Pine Needles — Monday 10/12 (Possible swap)</div>
+          <span class="booking-badge badge-reminder">⏰ Pending</span>
         </div>
-        <div class="booking-action">Tee time: <strong>8:51 AM</strong> · Rees Jones Design · Southern Pines</div>
-        <div class="booking-notes">Backup in case we can't secure an early enough Pine Needles tee time. Will cancel if Pine Needles comes through.</div>
+        <div class="booking-action">Fritz is trying to get an early tee time · Call <strong>(910) 692-6551</strong> · Target tee time: 8:30am–10:30am · $315/person</div>
+        <div class="booking-notes">If it comes through, swap Monday to Pine Needles and cancel Talamore. Last round — use locker room to shower afterward. Pack toiletry bag + change of clothes, leave in car.</div>
       </div>
 
       <div class="booking-item">
@@ -1555,14 +1454,11 @@
           <span class="booking-badge badge-booked">✓ Booked</span>
         </div>
         <div class="booking-action">Oct 8–12 · <strong>$1,385 total</strong> ($346/person) · <a href="https://www.vrbo.com/4388553" target="_blank" style="color: var(--pine-light);">VRBO #4388553</a></div>
-        <div class="booking-notes">Check-in Thursday, check-out Monday morning before Pine Needles.</div>
+        <div class="booking-notes">Check-in Thursday, check-out Monday morning before golf.</div>
       </div>
 
     </div>
   </div>
-
-  <!-- ── TRAVEL (removed, merged into Logistics) ── -->
-  <div class="tab-panel" id="tab-travel" style="display:none"></div>
 
 </div>
 
@@ -1571,7 +1467,792 @@
 </footer>
 
 <script>
-  const TABS = ['itinerary','courses','logistics','costs','standings','booking'];
+  // ══════════════════════════════════════════════════════════════
+  //  SCORES & STANDINGS — to post results, edit ROUNDS below.
+  //  Replace _ with each player's gross score; _ = not played yet.
+  // ══════════════════════════════════════════════════════════════
+  const _ = null;
+  const PLAYERS = ['Fritz', 'Von', 'Matt', 'Charlie'];
+  const BUY_IN = 30;              // per player, per round
+  const BET_VALUE = 10;           // per Sixes match / Nassau bet
+  const PRESS_VALUE = 10;         // per Nassau press
+  const POT_SPLIT = [0.75, 0.25]; // Stableford / stroke play: 1st, 2nd
+  const ALLOWANCE = 0.9;           // handicap allowance for every round
+
+  // From GHIN. Also renders the Handicaps table.
+  const HANDICAP_INDEX = { Fritz: 18.6, Von: 8.1, Matt: 28.7, Charlie: 18.0 };
+
+  // Par + stroke index (men's handicap row) from the official scorecards linked on the Courses tab.
+  // courseHandicap from GHIN; use null if unknown.
+  const COURSES = {
+    totHill: {
+      course: 'Tot Hill Farm', abbr: 'Tot Hill', tee: 'Silver',
+      par: [4, 4, 3, 5, 5, 3, 4, 5, 4,   4, 3, 4, 3, 4, 3, 5, 4, 5],
+      si:  [8, 2, 18, 10, 6, 14, 16, 12, 4,   15, 13, 5, 9, 7, 17, 3, 1, 11],
+      courseHandicap: { Fritz: 22, Von: 9, Matt: 34, Charlie: 21 },
+    },
+    southernPines: {
+      course: 'Southern Pines', abbr: 'S. Pines', tee: 'White',
+      // Holes 4, 6, 12 are listed "4/5" (men's/women's par); men's par 4 used (par 71). Lost Hole excluded.
+      par: [4, 5, 3, 4, 5, 4, 3, 4, 3,   4, 4, 4, 4, 3, 5, 4, 4, 4],
+      si:  [11, 7, 13, 3, 5, 1, 17, 9, 15,   10, 14, 2, 8, 18, 6, 16, 4, 12],
+      courseHandicap: { Fritz: 22, Von: 9, Matt: 34, Charlie: 21 },
+    },
+    midPines: {
+      course: 'Mid Pines', abbr: 'Mid Pines', tee: 'Ross',
+      par: [4, 3, 4, 4, 5, 5, 4, 3, 4,   5, 3, 4, 3, 4, 5, 4, 4, 4],
+      si:  [5, 15, 7, 13, 9, 1, 3, 17, 11,   2, 18, 8, 10, 16, 12, 6, 14, 4],
+      courseHandicap: { Fritz: 23, Von: 10, Matt: 35, Charlie: 22 },
+    },
+    pineNeedles: {
+      course: 'Pine Needles', abbr: 'Pine Needles', tee: 'Ross',
+      par: [5, 4, 3, 4, 3, 4, 4, 4, 4,   5, 4, 4, 3, 4, 5, 3, 4, 4],
+      si:  [11, 5, 17, 9, 7, 1, 3, 15, 13,   4, 12, 14, 16, 2, 6, 18, 8, 10],
+      courseHandicap: { Fritz: 24, Von: 11, Matt: 36, Charlie: 23 },
+    },
+    talamore: {
+      course: 'Talamore', abbr: 'Talamore', tee: 'Blue',
+      par: [5, 3, 4, 5, 3, 4, 4, 4, 4,   4, 5, 4, 3, 4, 3, 4, 4, 4],
+      si:  [4, 16, 6, 14, 18, 12, 2, 8, 10,   7, 15, 5, 17, 9, 13, 1, 11, 3],
+      courseHandicap: { Fritz: 22, Von: 10, Matt: 34, Charlie: 21 },
+    },
+  };
+
+  const ROUNDS = [
+    {
+      id: 'fri', day: 'Friday', ...courseFields('totHill'), format: 'sixes',
+      allowance: ALLOWANCE,
+      offLowMan: true,    // strokes off the low man (Von)
+      // Matches: holes 1–6, 7–12, 13–18. Everyone partners everyone once (drawn at random).
+      pairings: [
+        { A: ['Fritz', 'Von'],     B: ['Matt', 'Charlie'] },
+        { A: ['Fritz', 'Charlie'], B: ['Von', 'Matt'] },
+        { A: ['Fritz', 'Matt'],    B: ['Von', 'Charlie'] },
+      ],
+      // A team can press once it's closed out in a match (down more holes than are left).
+      // e.g. { match: 1, startHole: 5 } → new $10 bet on hole 6. The pressing team is worked out.
+      presses: [],
+      scores: {
+        Fritz:   [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Von:     [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Matt:    [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Charlie: [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+      },
+    },
+    {
+      id: 'sat', day: 'Saturday', ...courseFields('southernPines'), format: 'nassau',
+      allowance: ALLOWANCE,
+      offLowMan: true,    // strokes off the low man (Von)
+      // Teams come from Friday's finish: 1st & 4th vs 2nd & 3rd (ties broken by lower Friday net score).
+      // Filling in `teams` overrides that, e.g. { A: ['Fritz', 'Matt'], B: ['Von', 'Charlie'] }.
+      teamsFrom: { round: 'fri', A: [1, 4], B: [2, 3] },
+      teams: { A: [_, _], B: [_, _] },
+      // A team can press the front, back or overall once it's closed out on that bet (down more
+      // holes than are left in it). e.g. { bet: 'front', startHole: 7 } → new $10 bet on holes 8–9.
+      // The pressing team is worked out.
+      presses: [],
+      scores: {
+        Fritz:   [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Von:     [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Matt:    [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Charlie: [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+      },
+    },
+    {
+      id: 'sun', day: 'Sunday', ...courseFields('midPines'), format: 'stableford',
+      allowance: ALLOWANCE,
+      offLowMan: true,    // strokes off the low man (Von)
+      scores: {
+        Fritz:   [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Von:     [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Matt:    [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Charlie: [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+      },
+    },
+    {
+      // Pine Needles (Ross tees): if we get a tee time there, comment out the Talamore line
+      // and uncomment the Pine Needles one. Scores and settings below stay the same.
+      id: 'mon', day: 'Monday', ...courseFields('talamore'), format: 'stroke',
+      // id: 'mon', day: 'Monday', ...courseFields('pineNeedles'), format: 'stroke',
+      allowance: ALLOWANCE,
+      offLowMan: true,    // strokes off the low man (Von)
+      scores: {
+        Fritz:   [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Von:     [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Matt:    [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Charlie: [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+      },
+    },
+  ];
+
+  // ── Scoring (pure functions, no DOM) ──
+
+  const SIXES_MATCHES = [[1, 6], [7, 12], [13, 18]];
+  function courseFields(key) {
+    const c = COURSES[key];
+    return {
+      course: c.course, tee: c.tee,
+      holes: c.par.map((par, i) => ({ par, si: c.si[i] })),
+      courseHandicap: { ...c.courseHandicap },
+    };
+  }
+
+  const isNum = v => typeof v === 'number' && Number.isFinite(v);
+  const isScore = v => Number.isInteger(v) && v > 0;
+  const sum = arr => arr.reduce((a, b) => a + b, 0);
+
+  // Rounded to the nearest whole stroke, .5 up (22 × 90% = 19.8 → 20). The inner round
+  // strips float noise so exact halves (e.g. 25 × 90% = 22.5) aren't nudged down.
+  function allowanceHandicap(ch, allowance) {
+    return Math.round(Math.round(ch * allowance * 1e6) / 1e6);
+  }
+
+  function playingHandicaps(round) {
+    const allowance = isNum(round.allowance) ? round.allowance : 1;
+    const ph = {};
+    for (const p of PLAYERS) {
+      const ch = round.courseHandicap?.[p];
+      ph[p] = isNum(ch) ? allowanceHandicap(ch, allowance) : null;
+    }
+    if (round.offLowMan) {
+      const vals = PLAYERS.map(p => ph[p]);
+      const low = vals.includes(null) ? null : Math.min(...vals);
+      for (const p of PLAYERS) ph[p] = low === null ? null : ph[p] - low;
+    }
+    return ph;
+  }
+
+  function strokesOnHole(ph, si) {
+    if (!isNum(ph) || !isNum(si)) return null;
+    const n = Math.max(0, ph);
+    return Math.floor(n / 18) + (si <= n % 18 ? 1 : 0);
+  }
+
+  // { player: [strokes received per hole | null] }
+  function strokeTable(round) {
+    const ph = playingHandicaps(round);
+    const out = {};
+    for (const p of PLAYERS) out[p] = round.holes.map(h => strokesOnHole(ph[p], h.si));
+    return out;
+  }
+
+  // { player: [net score per hole | null] }
+  function netScores(round) {
+    const strokes = strokeTable(round);
+    const out = {};
+    for (const p of PLAYERS) {
+      out[p] = round.holes.map((h, i) => {
+        const gross = round.scores?.[p]?.[i];
+        return isScore(gross) && strokes[p][i] !== null ? gross - strokes[p][i] : null;
+      });
+    }
+    return out;
+  }
+
+  // Sorts rows best-first and sets row.rank (ties share a rank; null values go last, unranked).
+  function rankRows(rows, key, higherIsBetter) {
+    const sorted = [...rows].sort((a, b) => {
+      if (a[key] === null) return b[key] === null ? 0 : 1;
+      if (b[key] === null) return -1;
+      return higherIsBetter ? b[key] - a[key] : a[key] - b[key];
+    });
+    sorted.forEach((r, i) => {
+      r.rank = r[key] === null ? null
+        : i > 0 && sorted[i - 1][key] === r[key] ? sorted[i - 1].rank : i + 1;
+    });
+    return sorted;
+  }
+
+  // Pot pays POT_SPLIT by place; tied players split the places they cover.
+  // Returns { player: net $ after buy-in }.
+  function potPayouts(ranked) {
+    const pot = BUY_IN * PLAYERS.length;
+    const places = PLAYERS.map((p, i) => (POT_SPLIT[i] || 0) * pot);
+    const money = {};
+    for (let i = 0; i < ranked.length;) {
+      let j = i;
+      while (j < ranked.length && ranked[j].rank === ranked[i].rank) j++;
+      const share = sum(places.slice(i, j)) / (j - i);
+      for (let k = i; k < j; k++) money[ranked[k].player] = share - BUY_IN;
+      i = j;
+    }
+    return money;
+  }
+
+  function individualResults(rows, key, higherIsBetter) {
+    const ranked = rankRows(rows, key, higherIsBetter);
+    const complete = rows.every(r => r.thru === 18);
+    return { rows: ranked, complete, money: complete ? potPayouts(ranked) : null };
+  }
+
+  // Net double bogey or worse 0, bogey 1, par 2, birdie 3, eagle 4, ...
+  function stablefordPoints(net, par) {
+    return Math.max(0, 2 + par - net);
+  }
+
+  function stablefordResults(round) {
+    const net = netScores(round);
+    const rows = PLAYERS.map(player => {
+      const pts = round.holes.map((h, i) =>
+        net[player][i] !== null && isNum(h.par) ? stablefordPoints(net[player][i], h.par) : null);
+      const played = pts.filter(v => v !== null);
+      return { player, holes: pts, thru: played.length, total: played.length ? sum(played) : null };
+    });
+    return individualResults(rows, 'total', true);
+  }
+
+  // Net stroke play, each hole capped at net double bogey.
+  function strokeResults(round) {
+    const strokes = strokeTable(round);
+    const rows = PLAYERS.map(player => {
+      const nets = round.holes.map((h, i) => {
+        const gross = round.scores?.[player]?.[i];
+        const s = strokes[player][i];
+        if (!isScore(gross) || s === null || !isNum(h.par)) return null;
+        return Math.min(gross, h.par + 2 + s) - s;
+      });
+      const played = nets.map((n, i) => (n === null ? null : i)).filter(i => i !== null);
+      const total = played.length ? sum(played.map(i => nets[i])) : null;
+      const toPar = played.length ? total - sum(played.map(i => round.holes[i].par)) : null;
+      return { player, holes: nets, thru: played.length, total, toPar };
+    });
+    return individualResults(rows, 'toPar', false);
+  }
+
+  function validTeams(t) {
+    const all = [...(t?.A || []), ...(t?.B || [])];
+    return t?.A?.length === 2 && t?.B?.length === 2 &&
+      all.every(p => PLAYERS.includes(p)) && new Set(all).size === 4;
+  }
+
+  // Best-ball net per hole: 'A' | 'B' | 'H' (halved) | null (a score is missing).
+  function holeWinners(net, teams) {
+    return net[PLAYERS[0]].map((x, i) => {
+      const best = side => {
+        const v = teams[side].map(p => net[p][i]);
+        return v.includes(null) ? null : Math.min(...v);
+      };
+      const a = best('A'), b = best('B');
+      if (a === null || b === null) return null;
+      return a < b ? 'A' : b < a ? 'B' : 'H';
+    });
+  }
+
+  // Holes-up match over holes start..end (1-based, inclusive). Counts holes in order and
+  // stops at the first unplayed one. status[i] is 'A2' | 'B1' | 'AS' once played, null if
+  // not yet played, undefined outside the span; score[i] is holes won so far, A–B ('2–1').
+  // result is set once the match is decided.
+  function matchBet(winners, start, end) {
+    const status = Array(18).fill(undefined);
+    const score = Array(18).fill(undefined);
+    const leads = Array(18).fill(undefined);
+    const won = { A: 0, B: 0 };
+    let diff = 0, thru = start - 1, result = null;
+    for (let h = start; h <= end; h++) {
+      const w = winners[h - 1];
+      if (thru !== h - 1 || !w) { status[h - 1] = null; score[h - 1] = null; continue; }
+      if (w !== 'H') won[w]++;
+      diff = won.A - won.B;
+      leads[h - 1] = diff;
+      status[h - 1] = diff === 0 ? 'AS' : (diff > 0 ? 'A' : 'B') + Math.abs(diff);
+      score[h - 1] = `${won.A}–${won.B}`;
+      thru = h;
+      const left = end - h;
+      if (!result && left === 0) {
+        result = diff === 0 ? { winner: null, text: 'Push' }
+          : { winner: diff > 0 ? 'A' : 'B', text: `${Math.abs(diff)} up`, up: Math.abs(diff), left: 0 };
+      } else if (!result && Math.abs(diff) > left) {
+        result = { winner: diff > 0 ? 'A' : 'B', text: `${Math.abs(diff)} & ${left}`, up: Math.abs(diff), left };
+      }
+    }
+    return { start, end, status, score, leads, thru, result };
+  }
+
+  // A press is allowed only once the pressing side is closed out on that bet — down more holes
+  // than are left in it (down 2 with 1 to go: yes; down 1 with 1 to go: no). It's a new $10 bet
+  // from the next hole to the end of the pressed bet. Returns { press } or { error }.
+  function pressOn(bet, startHole, name) {
+    const where = `${name} after hole ${startHole ?? '?'}`;
+    if (!bet) return { error: `${name} isn't one of this round's bets` };
+    if (!bet.teams) return { error: `${where}: teams aren't set yet` };
+    if (!Number.isInteger(startHole) || startHole < bet.start || startHole >= bet.end) {
+      return { error: `${where}: pick a hole inside that bet, before its last hole` };
+    }
+    if (bet.thru < startHole) return { error: `${where}: scores through that hole aren't in yet` };
+    const lead = bet.leads[startHole - 1];
+    const left = bet.end - startHole;
+    if (Math.abs(lead) <= left) {
+      return { error: `${where}: nobody was closed out (${lead === 0 ? 'all square' : `${Math.abs(lead)} down`} with ${left} to go)` };
+    }
+    return { press: {
+      teams: bet.teams, winners: bet.winners, pressedBy: lead > 0 ? 'B' : 'A', value: PRESS_VALUE,
+      ...matchBet(bet.winners, startHole + 1, bet.end),
+    } };
+  }
+
+  // Validates presses, numbers them P1, P2… by start hole, and labels them with their bet.
+  function collectPresses(list, betFor) {
+    const presses = [];
+    const invalidPresses = [];
+    for (const p of list || []) {
+      const { bet, name } = betFor(p);
+      const { press, error } = pressOn(bet, p?.startHole, name);
+      if (press) presses.push({ ...press, of: name, parent: bet }); else invalidPresses.push(error);
+    }
+    presses.sort((a, b) => a.start - b.start);
+    presses.forEach((p, i) => { p.key = `P${i + 1}`; p.label = `P${i + 1} · ${p.of}`; });
+    return { presses, invalidPresses };
+  }
+
+  // { player: $ } across decided bets; each bet carries its own teams.
+  function playerMoney(bets) {
+    const out = Object.fromEntries(PLAYERS.map(p => [p, 0]));
+    for (const b of bets) {
+      const a = sideAMoney([b]);
+      for (const p of b.teams.A) out[p] += a;
+      for (const p of b.teams.B) out[p] -= a;
+    }
+    return out;
+  }
+
+  // Signed $ for side A across decided bets.
+  function sideAMoney(bets) {
+    return sum(bets.map(b => b.result?.winner === 'A' ? b.value : b.result?.winner === 'B' ? -b.value : 0));
+  }
+
+  // Friday finish order: most $ first, ties broken by lower total net score.
+  // Returns groups of players still tied after that, e.g. [['Von'], ['Fritz', 'Matt'], ['Charlie']].
+  function finishGroups(round) {
+    const money = FORMATS[round.format].results(round).money;
+    if (!money) return null;
+    const net = netScores(round);
+    const rows = PLAYERS.map(p => ({ player: p, money: money[p] || 0, net: sum(net[p].filter(isNum)) }));
+    rows.sort((a, b) => b.money - a.money || a.net - b.net);
+    const groups = [];
+    rows.forEach((r, i) => {
+      const prev = rows[i - 1];
+      if (prev && prev.money === r.money && prev.net === r.net) groups[groups.length - 1].push(r.player);
+      else groups.push([r.player]);
+    });
+    return groups;
+  }
+
+  // Teams for a round: explicit `teams` if set, else built from another round's finish (`teamsFrom`).
+  // { teams, reason } — teams is null with a reason while it can't be decided.
+  function resolveTeams(round, rounds = ROUNDS) {
+    if (validTeams(round.teams)) return { teams: round.teams, source: 'manual' };
+    const from = round.teamsFrom;
+    const src = from && rounds.find(r => r.id === from.round);
+    if (!src) return { teams: null, reason: 'unset' };
+    const groups = finishGroups(src);
+    if (!groups) return { teams: null, reason: 'pending', src };
+    // Place → player. Players tied at a place boundary make the split ambiguous unless every
+    // ordering of the tied players gives the same teams (e.g. a 2nd/3rd tie with 1&4 v 2&3).
+    const orderings = groups.reduce((acc, g) => acc.flatMap(o => permutations(g).map(p => [...o, ...p])), [[]]);
+    const split = order => ({ A: from.A.map(n => order[n - 1]), B: from.B.map(n => order[n - 1]) });
+    const key = t => [t.A, t.B].map(s => [...s].sort().join('+')).sort().join(' v ');
+    const keys = new Set(orderings.map(o => key(split(o))));
+    if (keys.size > 1) return { teams: null, reason: 'tie', src, groups };
+    return { teams: split(orderings[0]), source: 'derived', src };
+  }
+
+  function permutations(arr) {
+    if (arr.length <= 1) return [arr];
+    return arr.flatMap((x, i) => permutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map(p => [x, ...p]));
+  }
+
+  function nassauResults(round) {
+    const resolved = resolveTeams(round);
+    const teams = resolved.teams;
+    if (!teams) return { ready: false, resolved, complete: false, money: null };
+    const winners = holeWinners(netScores(round), teams);
+    const bets = [
+      { kind: 'front',   label: 'Front',   teams, winners, value: BET_VALUE, ...matchBet(winners, 1, 9) },
+      { kind: 'back',    label: 'Back',    teams, winners, value: BET_VALUE, ...matchBet(winners, 10, 18) },
+      { kind: 'overall', label: 'Overall', teams, winners, value: BET_VALUE, ...matchBet(winners, 1, 18) },
+    ];
+    const { presses, invalidPresses } = collectPresses(round.presses, p => {
+      const bet = bets.find(b => b.kind === p?.bet);
+      return { bet, name: bet ? bet.label : `"${p?.bet}"` };
+    });
+    const all = [...bets, ...presses];
+    const teamA = sideAMoney(all);
+    const running = playerMoney(all);
+    const complete = winners.every(w => w !== null);
+    return {
+      ready: true, resolved, teams, winners, bets: all, presses, invalidPresses, teamA, running,
+      complete, money: complete ? running : null,
+    };
+  }
+
+  function sixesResults(round) {
+    const net = netScores(round);
+    const matches = SIXES_MATCHES.map(([start, end], i) => {
+      const teams = validTeams(round.pairings?.[i]) ? round.pairings[i] : null;
+      const winners = teams ? holeWinners(net, teams) : Array(18).fill(null);
+      return { key: `M${i + 1}`, label: `Match ${i + 1}`, teams, winners, value: BET_VALUE, ...matchBet(winners, start, end) };
+    });
+    // e.g. { match: 1, startHole: 5 } — same closed-out rule as the Nassau, within one match.
+    const { presses, invalidPresses } = collectPresses(round.presses, p => {
+      const bet = matches[p?.match - 1];
+      return { bet, name: bet ? bet.key : `M${p?.match ?? '?'}` };
+    });
+    const decided = matches.filter(m => m.teams);
+    const running = playerMoney([...decided, ...presses]);
+    const complete = matches.every(m => m.teams && m.thru === m.end);
+    return { matches, presses, invalidPresses, running, complete, money: complete ? running : null };
+  }
+
+  const FORMATS = {
+    sixes:      { label: 'Sixes',                results: sixesResults },
+    nassau:     { label: 'Nassau',               results: nassauResults },
+    stableford: { label: 'Ind. Net Stableford',  results: stablefordResults },
+    stroke:     { label: 'Ind. Net Stroke Play', results: strokeResults },
+  };
+
+  // ── Rendering ──
+
+  const pct = v => `${Math.round(v * 100)}%`;
+  const range = (a, b) => Array.from({ length: b - a + 1 }, (x, i) => a + i);
+  const plural = (n, word) => `${word}${n === 1 ? '' : 's'}`;
+  const ordinal = n => n + ({ 1: 'st', 2: 'nd', 3: 'rd' }[n] || 'th');
+  // "20/12": course handicap after the allowance / strokes received (after off-low-man).
+  function handicapLabel(round, ph, player) {
+    const ch = round.courseHandicap?.[player];
+    const allowance = isNum(round.allowance) ? round.allowance : 1;
+    return `${isNum(ch) ? allowanceHandicap(ch, allowance) : 'TBD'}/${ph[player] ?? 'TBD'}`;
+  }
+
+  function sumCell(values, cls = 'sc-tot') {
+    const v = values.filter(isNum);
+    if (!v.length) return `<td class="${cls} sc-empty">–</td>`;
+    return `<td class="${cls}${v.length < values.length ? ' sc-partial' : ''}">${sum(v)}</td>`;
+  }
+
+  // Display-only: swap the internal side code in 'A2' / 'B' for a team label, e.g. 'FV2'.
+  function relabel(text, sides) {
+    if (!text || !sides || text === 'AS' || text === '–') return text;
+    return (sides[text[0]] ?? text[0]) + text.slice(1);
+  }
+
+  const initials = team => team.map(p => p[0]).join('');
+
+  function trackerClass(text) {
+    if (text === undefined) return 'trk-off';
+    if (text === null) return '';
+    if (text === 'AS' || text === '–') return 'trk-as';
+    return text[0] === 'A' ? 'trk-a' : 'trk-b';
+  }
+
+  // One 9-hole table. ctx: { strokes, ph, pressPills: {hole: ['P1']}, tracker: [{label, cells[18]}] }
+  function renderNine(round, from, to, ctx) {
+    const holes = range(from, to);
+    const back = from === 10;
+    const colCls = h => (ctx.pressPills[h] ? ' press-start' : ctx.matchStarts?.includes(h) ? ' match-start' : '');
+    // Out (front) or In + Tot (back), pinned to the right edge while the holes scroll.
+    const totCls = back ? ['sc-tot sc-tot-in sc-tot-first', 'sc-tot'] : ['sc-tot sc-tot-first'];
+    const totalHeads = back ? `<th class="${totCls[0]}">In</th><th class="${totCls[1]}">Tot</th>` : `<th class="${totCls[0]}">Out</th>`;
+    const blankTotals = totCls.map(c => `<td class="${c}"></td>`).join('');
+    const totals = get => back
+      ? sumCell(holes.map(get), totCls[0]) + sumCell(range(1, 18).map(get), totCls[1])
+      : sumCell(holes.map(get), totCls[0]);
+    const pars = h => round.holes[h - 1].par;
+
+    let html = '<div class="sc-wrap"><table class="sc-table"><thead>';
+    html += '<tr class="sc-hole-row"><th>Hole</th>';
+    for (const h of holes) {
+      const pills = (ctx.pressPills[h] || []).map(k => `<span class="press-pill">${k}</span>`).join('');
+      html += `<th class="${colCls(h).trim()}">${h}${pills}</th>`;
+    }
+    html += `${totalHeads}</tr>`;
+    html += '<tr class="sc-par-row"><th>Par</th>';
+    for (const h of holes) html += `<td class="${colCls(h).trim()}">${pars(h) ?? '–'}</td>`;
+    html += `${totals(pars)}</tr>`;
+    html += '<tr class="sc-si-row"><th>SI</th>';
+    for (const h of holes) html += `<td class="${colCls(h).trim()}">${round.holes[h - 1].si ?? '–'}</td>`;
+    html += `${blankTotals}</tr></thead><tbody>`;
+
+    for (const p of PLAYERS) {
+      html += `<tr><th class="sc-player">${p}<span class="sc-ph${ctx.ph[p] === null ? ' tbd' : ''}">` +
+        `${handicapLabel(round, ctx.ph, p)}</span></th>`;
+      for (const h of holes) {
+        const gross = round.scores?.[p]?.[h - 1];
+        const strokes = ctx.strokes[p][h - 1] || 0;
+        const dots = '●'.repeat(strokes);
+        // Gross/net on holes where the player gets a stroke (5/4), like a paper card.
+        const score = !isScore(gross) ? '<span class="sc-empty">–</span>'
+          : strokes ? `<span>${gross}</span><span class="sc-net">/${gross - strokes}</span>` : `<span>${gross}</span>`;
+        html += `<td class="sc-cell${colCls(h)}"><span class="sc-dots">${dots}</span>${score}</td>`;
+      }
+      html += `${totals(h => isScore(round.scores?.[p]?.[h - 1]) ? round.scores[p][h - 1] : null)}</tr>`;
+    }
+    html += '</tbody>';
+
+    const rows = ctx.tracker.filter(r => holes.some(h => r.cells[h - 1] !== undefined));
+    if (rows.length) {
+      html += '<tbody class="sc-trk">';
+      rows.forEach((r, i) => {
+        html += `<tr${i === 0 ? ' class="sc-trk-first"' : ''}><th class="sc-trk-label">${r.label}</th>`;
+        for (const h of holes) {
+          const text = r.cells[h - 1];
+          const cls = ((r.classOf ? r.classOf(text, h) : trackerClass(text)) + colCls(h)).trim();
+          const shown = relabel(text, r.sides?.(h));
+          html += `<td class="${cls}">${shown ?? ''}</td>`;
+        }
+        const get = h => r.cells[h - 1] ?? null;
+        html += r.sum ? totals(get) : blankTotals;
+        html += '</tr>';
+      });
+      html += '</tbody>';
+    }
+    return html + '</table></div>';
+  }
+
+  // "B wins" + "3 up with 1 to play" (closed out early) or "1 up" (went the distance).
+  function resultText(result, sides) {
+    if (!result) return { value: 'TBD' };
+    if (!result.winner) return { value: 'Push', detail: 'all square' };
+    return {
+      value: `${sides[result.winner]} wins`,
+      detail: result.left ? `${result.up} up with ${result.left} to play` : `${result.up} up`,
+    };
+  }
+
+  // One box per match / bet. The headline is the net for that match including its presses
+  // ("MC wins $10 each", "Even" when a press cancels the match); the pieces are listed below.
+  function betBox(bet, sides, presses = []) {
+    const span = b => (b.start === b.end ? `${b.start}` : `${b.start}–${b.end}`);
+    const r = resultText(bet.result, sides);
+    const all = [bet, ...presses];
+    let headline = 'TBD';
+    if (all.every(b => b.result)) {
+      const net = sideAMoney(all);
+      headline = net !== 0 ? `${sides[net > 0 ? 'A' : 'B']} wins $${Math.abs(net)} each`
+        : all.some(b => b.result.winner) ? 'Even' : 'Push';
+    }
+    const line = x => `<strong>${x.value}</strong>${x.detail ? ` · ${x.detail}` : ''}`;
+    const detail = !presses.length ? (r.detail || '')
+      : `${bet.kind ? bet.label : 'Match'}: ${line(r)}${headline === 'Even' ? `<br>${bet.kind ? 'Bet' : 'Match'} and press cancel out` : ''}`;
+    const pressLines = presses.map(p => `<div class="bet-box-press"><span class="press-pill">${p.key}</span> ` +
+      `${p.start === p.end ? 'Hole' : 'Holes'} ${span(p)}, pressed by ${sides[p.pressedBy]}: ${line(resultText(p.result, sides))}</div>`).join('');
+    return `<div class="bet-box">
+      <div class="bet-box-label">${bet.label} · ${span(bet)}</div>
+      <div class="bet-box-value${headline === 'TBD' ? ' tbd' : ''}">${headline}</div>
+      ${detail && headline !== 'TBD' ? `<div class="bet-box-sub">${detail}</div>` : ''}
+      ${pressLines}
+    </div>`;
+  }
+
+  function renderRound(round) {
+    const fmt = FORMATS[round.format];
+    const res = fmt.results(round);
+    const ph = playingHandicaps(round);
+    const ctx = { ph, strokes: strokeTable(round), pressPills: {}, tracker: [],
+      matchStarts: round.format === 'sixes' ? SIXES_MATCHES.slice(1).map(([start]) => start) : [] };
+    const notes = [];
+    let intro = '', boxes = '', table = '';
+
+    const missingCH = PLAYERS.filter(p => !isNum(round.courseHandicap?.[p]));
+    if (missingCH.length) {
+      notes.push(`<strong>Course handicap TBD</strong> for ${missingCH.join(', ')} (${round.course}, ${round.tee} tees) — ` +
+        (round.offLowMan ? 'no strokes shown until all are set.' : 'no strokes shown for them.'));
+    }
+    const missingHoles = round.holes.map((h, i) => (isNum(h.par) && isNum(h.si) ? null : i + 1)).filter(Boolean);
+    if (missingHoles.length) notes.push(`<strong>Par / SI TBD</strong> for ${plural(missingHoles.length, 'hole')} ${missingHoles.join(', ')}.`);
+
+    const totalPar = round.holes.every(h => isNum(h.par)) ? sum(round.holes.map(h => h.par)) : 'TBD';
+    const pot = BUY_IN * PLAYERS.length;
+    const payout = `$${POT_SPLIT[0] * pot} to 1st, $${POT_SPLIT[1] * pot} to 2nd ($${BUY_IN} each in)`;
+    const from = round.teamsFrom;
+    const rules = [
+      ['Tees', `${round.tee}, par ${totalPar}`],
+      ...{
+        sixes: [
+          ['Format', '2v2 best ball, net. Three 6-hole matches (1–6, 7–12, 13–18); partners rotate.'],
+          ['Stakes', `$${BET_VALUE} per match`],
+          ['Presses', `Once a team is closed out in a match: $${PRESS_VALUE}, from the next hole to the end of that match.`],
+        ],
+        nassau: [
+          ['Format', '2v2 best ball, net.'],
+          ...(from ? [['Teams', `${from.A.map(ordinal).join(' & ')} vs ${from.B.map(ordinal).join(' & ')} from ` +
+            `${ROUNDS.find(r => r.id === from.round)?.day ?? 'the earlier round'} (ties: lower net score)`]] : []),
+          ['Stakes', `$${BET_VALUE} each on the front, back and overall`],
+          ['Presses', `Once a team is closed out on a bet: $${PRESS_VALUE}, from the next hole to the end of that bet.`],
+        ],
+        stableford: [
+          ['Format', 'Individual, net Stableford.'],
+          ['Points', 'Net eagle 4, birdie 3, par 2, bogey 1, double bogey or worse 0.'],
+          ['Payout', payout],
+        ],
+        stroke: [
+          ['Format', 'Individual, net stroke play. Pick up at net double bogey.'],
+          ['Payout', payout],
+        ],
+      }[round.format],
+    ];
+
+    if (round.format === 'nassau') {
+      const sides = { A: 'A', B: 'B' };
+      const { resolved } = res;
+      const rule = from ? `${from.A.map(ordinal).join(' & ')} vs ${from.B.map(ordinal).join(' & ')} from ${resolved.src?.day || 'the earlier round'}` : '';
+      intro = `<div class="sc-teams"><strong>A:</strong> ${res.ready ? res.teams.A.join(' & ') : 'TBD'} &nbsp;·&nbsp; ` +
+        `<strong>B:</strong> ${res.ready ? res.teams.B.join(' & ') : 'TBD'}</div>`;
+      if (!res.ready) {
+        notes.push({
+          pending: `<strong>Teams TBD</strong> — set after ${resolved.src?.day}'s round (${rule}).`,
+          tie: `<strong>Tie on ${resolved.src?.day} decides the teams</strong> (${resolved.groups?.map(g => g.join(' = ')).join(', ')}) — ` +
+            'set <code>teams</code> for this round by hand.',
+          unset: '<strong>Teams TBD</strong> — set <code>teams</code> for this round to track the match.',
+        }[resolved.reason]);
+        boxes = ['Front · 1–9', 'Back · 10–18', 'Overall · 1–18']
+          .map(l => `<div class="bet-box"><div class="bet-box-label">${l}</div><div class="bet-box-value tbd">TBD</div></div>`).join('');
+        boxes += '<div class="bet-box net"><div class="bet-box-label">Net</div><div class="bet-box-value tbd">TBD</div></div>';
+      } else {
+        for (const p of res.presses) (ctx.pressPills[p.start] ||= []).push(p.key);
+        ctx.tracker.push({ label: 'Hole winner', cells: res.winners.map(w => (w === null ? null : w === 'H' ? '–' : w)) });
+        for (const b of res.bets) ctx.tracker.push({ label: b.label, cells: b.status });
+        for (const e of res.invalidPresses) notes.push(`<strong>Press ignored</strong> — ${e}.`);
+        boxes = res.bets.filter(b => !b.parent).map(b => betBox(b, sides, res.presses.filter(p => p.parent === b))).join('');
+        boxes += `<div class="bet-box net">
+          <div class="bet-box-label">Net</div>
+          <div class="bet-box-value${res.complete ? '' : ' tbd'}">${!res.complete ? 'TBD'
+            : res.teamA === 0 ? 'Push' : `${res.teamA > 0 ? 'A' : 'B'} wins $${Math.abs(res.teamA)} each`}</div>
+        </div>`;
+      }
+    }
+
+    if (round.format === 'sixes') {
+      const missing = res.matches.filter(m => !m.teams).map(m => m.key);
+      if (missing.length) notes.push(`<strong>Pairings TBD</strong> for ${missing.join(', ')} — set <code>pairings</code> for this round.`);
+      // Teams are shown by initials (FV vs MC); scoring still uses sides A / B internally.
+      const sidesOf = m => (m.teams ? { A: initials(m.teams.A), B: initials(m.teams.B) } : null);
+      intro = '<div class="sc-teams">' + res.matches.map(m => `<strong>${m.key}:</strong> ` + (m.teams
+        ? `(${sidesOf(m).A}) ${m.teams.A.join(' & ')} · (${sidesOf(m).B}) ${m.teams.B.join(' & ')}`
+        : 'TBD')).join('<br>') + '</div>';
+      const matchFor = h => res.matches.find(m => h >= m.start && h <= m.end);
+      // Running score = holes won in team order (FV–MC); colour follows who's ahead.
+      const leadClass = bet => (text, h) => {
+        const lead = bet.leads[h - 1];
+        return text === undefined ? 'trk-off' : lead === undefined ? '' : lead > 0 ? 'trk-a' : lead < 0 ? 'trk-b' : 'trk-as';
+      };
+      ctx.tracker.push({
+        label: 'Hole winner',
+        sides: h => sidesOf(matchFor(h)),
+        cells: range(1, 18).map(h => {
+          const w = matchFor(h).winners[h - 1];
+          return w === null ? null : w === 'H' ? '–' : w;
+        }),
+      });
+      for (const b of [...res.matches, ...res.presses]) {
+        ctx.tracker.push({ label: b.of ? b.label : b.key, cells: b.score, classOf: leadClass(b) });
+      }
+      for (const p of res.presses) (ctx.pressPills[p.start] ||= []).push(p.key);
+      for (const e of res.invalidPresses) notes.push(`<strong>Press ignored</strong> — ${e}.`);
+      boxes = res.matches.map(m => betBox(m, sidesOf(m) || {}, res.presses.filter(p => p.parent === m))).join('');
+    }
+
+    if (round.format === 'stableford') {
+      // Points per hole from 0: net score (gross − strokes on that hole) vs par.
+      for (const p of PLAYERS) {
+        ctx.tracker.push({
+          label: `${p}<span class="sc-ph">pts</span>`,
+          cells: res.rows.find(r => r.player === p).holes,
+          classOf: v => (v === null ? '' : v >= 3 ? 'trk-a' : v === 0 ? 'trk-b' : ''),
+          sum: true,
+        });
+      }
+    }
+
+    // Stroke play: the card's totals are gross, so list the net totals (holes capped at net
+    // double bogey), best first. Stableford needs nothing extra — the points rows carry the totals.
+    if (round.format === 'stroke') {
+      const toPar = v => v === 0 ? 'E' : v > 0 ? `+${v}` : `${v}`;
+      const posted = res.rows.filter(r => r.total !== null);
+      table = '<div class="sc-teams"><strong>Net:</strong> ' +
+        (posted.length ? posted.map(r => `${r.player} ${r.total} (${toPar(r.toPar)})`).join(' · ') : '<span class="tbd-cell">TBD</span>') +
+        '</div>';
+    }
+
+    // Only what's specific to this game; the shared key sits above the first card.
+    const keys = [
+      ...(round.format === 'nassau' || round.format === 'sixes' ? ['<span class="press-pill">P1</span> press starts'] : []),
+      ...(round.format === 'sixes' ? ['M1 row = holes won, in team order (e.g. FV–MC)'] : []),
+      ...(round.format === 'nassau' ? ['A2 = A 2 up · AS = all square'] : []),
+      ...(sharedHandicapRule() ? [] : [handicapRule(round)]),
+    ];
+    const legend = keys.length ? `<div class="sc-legend">${keys.map(k => `<span>${k}</span>`).join('')}</div>` : '';
+
+    return `<div class="round-section" id="round-${round.id}">
+      <div class="round-section-header">
+        <div class="round-section-title">${round.day} · ${round.course}</div>
+        <div class="round-format-tag">${fmt.label}</div>
+      </div>
+      <div class="round-section-body">
+        <dl class="sc-rules">${rules.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+        ${notes.map(n => `<div class="sc-note">${n}</div>`).join('')}
+        ${legend}
+        ${intro}
+        ${renderNine(round, 1, 9, ctx)}
+        ${renderNine(round, 10, 18, ctx)}
+        ${boxes ? `<div class="bet-boxes">${boxes}</div>` : ''}
+        ${table}
+      </div>
+    </div>`;
+  }
+
+  function handicapRule(round) {
+    return `Under each name: ${pct(isNum(round.allowance) ? round.allowance : 1)} course handicap / strokes received` +
+      (round.offLowMan ? ' (off the low man)' : '');
+  }
+
+  // The handicap line goes in the shared key when every round uses the same allowance rules.
+  function sharedHandicapRule() {
+    const rules = new Set(ROUNDS.map(handicapRule));
+    return rules.size === 1 ? [...rules][0] : null;
+  }
+
+  function scorecardKey() {
+    const items = ['<span class="sc-legend-dot">●</span> = handicap stroke on that hole', 'SI = stroke index (1 = hardest)'];
+    if (sharedHandicapRule()) items.push(sharedHandicapRule());
+    return `<div class="sc-key"><strong>Reading the scorecards</strong>` +
+      `<div class="sc-legend">${items.map(i => `<span>${i}</span>`).join('')}</div></div>`;
+  }
+
+  function renderStandings() {
+    // Winners only: what each player came out ahead that day (after their $30, presses
+    // included). Nothing is shown for a day they didn't win; TBD until the round is posted.
+    const results = ROUNDS.map(r => FORMATS[r.format].results(r));
+    const done = results.filter(r => r.complete);
+    const won = (r, p) => Math.max(0, r.money[p] || 0);
+    const rows = rankRows(PLAYERS.map(player => ({
+      player, total: done.length ? sum(done.map(r => won(r, player))) : null,
+    })), 'total', true);
+    const winCell = v => (v > 0 ? `<td class="earnings-cell earnings-pos">$${v}</td>` : '<td></td>');
+    document.getElementById('standings-table').innerHTML =
+      `<thead><tr><th>Player</th>${ROUNDS.map(r => `<th>${r.day.slice(0, 3)}</th>`).join('')}<th>Total</th></tr></thead><tbody>` +
+      rows.map(row => `<tr>
+        <td><span class="player-name"><span class="rank-badge${row.rank === 1 ? ' rank-1' : ''}">${row.rank ?? '—'}</span> ${row.player}</span></td>
+        ${results.map(r => (r.complete ? winCell(won(r, row.player)) : '<td class="tbd-cell">TBD</td>')).join('')}
+        ${row.total === null ? '<td class="tbd-cell">—</td>' : winCell(row.total)}
+      </tr>`).join('') + '</tbody>';
+
+    document.getElementById('round-cards').innerHTML = scorecardKey() + ROUNDS.map(renderRound).join('');
+
+    document.getElementById('handicap-table').innerHTML =
+      `<thead><tr><th>Player</th><th>Index</th>${Object.values(COURSES).map(c => `<th>${c.abbr}</th>`).join('')}</tr></thead><tbody>` +
+      PLAYERS.map(p => `<tr><td>${p}</td><td>${isNum(HANDICAP_INDEX[p]) ? HANDICAP_INDEX[p].toFixed(1) : 'TBD'}</td>` +
+        Object.values(COURSES).map(c => {
+          const ch = c.courseHandicap[p];
+          return `<td>${isNum(ch) ? `${ch}/${allowanceHandicap(ch, ALLOWANCE)}` : 'TBD'}</td>`;
+        }).join('') + '</tr>').join('') +
+      '</tbody>';
+  }
+
+  if (typeof document !== 'undefined') renderStandings();
+</script>
+
+<script>
+  const TABS =['itinerary','courses','logistics','costs','standings','booking'];
 
   function showTab(id, pushState = true) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1594,74 +2275,6 @@
 
   window.addEventListener('popstate', loadFromHash);
   loadFromHash();
-
-  // ── CAROUSEL ──
-  let currentSlide = 0;
-  const totalSlides = 4;
-  const track = document.getElementById('carouselTrack');
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  function goToSlide(index) {
-    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-    const slideWidth = track.querySelector('.carousel-slide').offsetWidth;
-    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-  }
-
-  // Touch swipe support
-  let touchStartX = 0;
-  let touchDeltaX = 0;
-
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    track.style.transition = 'none';
-  }, { passive: true });
-
-  track.addEventListener('touchmove', e => {
-    touchDeltaX = e.touches[0].clientX - touchStartX;
-    const slideWidth = track.querySelector('.carousel-slide').offsetWidth;
-    track.style.transform = `translateX(${-currentSlide * slideWidth + touchDeltaX}px)`;
-  }, { passive: true });
-
-  track.addEventListener('touchend', () => {
-    track.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    if (touchDeltaX < -50) goToSlide(currentSlide + 1);
-    else if (touchDeltaX > 50) goToSlide(currentSlide - 1);
-    else goToSlide(currentSlide);
-    touchDeltaX = 0;
-  });
-
-  // Mouse drag support for desktop
-  let mouseStartX = 0;
-  let isDragging = false;
-
-  track.addEventListener('mousedown', e => {
-    mouseStartX = e.clientX;
-    isDragging = true;
-    track.style.transition = 'none';
-    track.style.cursor = 'grabbing';
-  });
-
-  window.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    const delta = e.clientX - mouseStartX;
-    const slideWidth = track.querySelector('.carousel-slide').offsetWidth;
-    track.style.transform = `translateX(${-currentSlide * slideWidth + delta}px)`;
-  });
-
-  window.addEventListener('mouseup', e => {
-    if (!isDragging) return;
-    isDragging = false;
-    track.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    track.style.cursor = '';
-    const delta = e.clientX - mouseStartX;
-    if (delta < -50) goToSlide(currentSlide + 1);
-    else if (delta > 50) goToSlide(currentSlide - 1);
-    else goToSlide(currentSlide);
-  });
-
-  // Recalculate on resize
-  window.addEventListener('resize', () => goToSlide(currentSlide));
 </script>
 </body>
 </html>
