@@ -175,6 +175,33 @@
     padding-bottom: 0.6rem;
     border-bottom: 2px solid var(--sand);
   }
+  /* Collapsible sections (Logistics): closed by default, tap the heading to open */
+  .collapsible { margin-bottom: 1rem; scroll-margin-top: 4rem; }
+  .collapsible > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .collapsible > summary::-webkit-details-marker { display: none; }
+  .collapsible > summary::after {
+    content: '';
+    flex: none;
+    width: 0.55rem;
+    height: 0.55rem;
+    margin: 0 0.4rem 0.3rem 1rem;
+    border-right: 2px solid var(--pine-light);
+    border-bottom: 2px solid var(--pine-light);
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+  }
+  .collapsible[open] { margin-bottom: 2rem; }
+  .collapsible[open] > summary { margin-bottom: 1.25rem; }
+  .collapsible[open] > summary::after { transform: rotate(-135deg); margin-bottom: -0.2rem; }
+
   .section-subtitle {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -1196,256 +1223,262 @@
 
   <!-- ── LOGISTICS ── -->
   <div class="tab-panel" id="tab-logistics">
-    <h2 class="section-title">Lodging</h2>
-    <div class="lodging-card">
-      <div class="lodging-header">
-        <div class="lodging-name">Serene South Henley</div>
-        <div class="lodging-meta">VRBO · Southern Pines, NC</div>
-      </div>
-      <div class="lodging-body">
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">📅</div>
-          <div class="lodging-detail-text"><strong>Check-in:</strong> Thursday, October 8 &nbsp;·&nbsp; <strong>Check-out:</strong> Monday, October 12 (4 nights)</div>
+    <details class="collapsible" id="lodging-section">
+      <summary class="section-title">Lodging</summary>
+      <div class="lodging-card">
+        <div class="lodging-header">
+          <div class="lodging-name">Serene South Henley</div>
+          <div class="lodging-meta">VRBO · Southern Pines, NC</div>
         </div>
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">🔗</div>
-          <div class="lodging-detail-text"><a href="https://www.vrbo.com/4388553" target="_blank"><strong>View on VRBO →</strong></a></div>
-        </div>
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">📍</div>
-          <div class="lodging-detail-text">131 Henley Place, Southern Pines, NC 28387</div>
-        </div>
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">🛏️</div>
-          <div class="lodging-detail-text">Private beds for all 4</div>
-        </div>
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">🔥</div>
-          <div class="lodging-detail-text">Outdoor grill, backyard &amp; outdoor seating area</div>
-        </div>
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">🍳</div>
-          <div class="lodging-detail-text">Washer/dryer, full kitchen</div>
-        </div>
-        <div class="lodging-detail">
-          <div class="lodging-detail-icon">💰</div>
-          <div class="lodging-detail-text"><strong>Total: $1,385</strong> &nbsp;·&nbsp; $346/person for 4 nights</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="spacer"></div>
-    <h2 class="section-title">Getting There</h2>
-
-    <!-- Fritz -->
-    <div class="day-card" style="margin-bottom: 0.75rem;">
-      <div class="day-card-header">
-        <div class="day-header-text" style="width:100%">
-          <div class="day-date">Washington, D.C.</div>
-          <div class="day-title">Fritz — Driving</div>
+        <div class="lodging-body">
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">📅</div>
+            <div class="lodging-detail-text"><strong>Check-in:</strong> Thursday, October 8 &nbsp;·&nbsp; <strong>Check-out:</strong> Monday, October 12 (4 nights)</div>
+          </div>
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">🔗</div>
+            <div class="lodging-detail-text"><a href="https://www.vrbo.com/4388553" target="_blank"><strong>View on VRBO →</strong></a></div>
+          </div>
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">📍</div>
+            <div class="lodging-detail-text">131 Henley Place, Southern Pines, NC 28387</div>
+          </div>
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">🛏️</div>
+            <div class="lodging-detail-text">Private beds for all 4</div>
+          </div>
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">🔥</div>
+            <div class="lodging-detail-text">Outdoor grill, backyard &amp; outdoor seating area</div>
+          </div>
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">🍳</div>
+            <div class="lodging-detail-text">Washer/dryer, full kitchen</div>
+          </div>
+          <div class="lodging-detail">
+            <div class="lodging-detail-icon">💰</div>
+            <div class="lodging-detail-text"><strong>Total: $1,385</strong> &nbsp;·&nbsp; $346/person for 4 nights</div>
+          </div>
         </div>
       </div>
-      <div class="day-card-body">
-        <div class="day-detail">
-          <div class="day-detail-icon">🚗</div>
-          <div class="day-detail-text"><strong>~5–6 hrs</strong> · Driving down, picking up Von and Matt at RDU on the way</div>
+    </details>
+
+    <details class="collapsible" id="travel-section">
+      <summary class="section-title">Getting There</summary>
+
+      <!-- Fritz -->
+      <div class="day-card" style="margin-bottom: 0.75rem;">
+        <div class="day-card-header">
+          <div class="day-header-text" style="width:100%">
+            <div class="day-date">Washington, D.C.</div>
+            <div class="day-title">Fritz — Driving</div>
+          </div>
         </div>
-        <div class="day-detail">
-          <div class="day-detail-icon">✈️</div>
-          <div class="day-detail-text">RDU is ~1 hr north of Southern Pines on US-1 — easy detour en route</div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">🚗</div>
+            <div class="day-detail-text"><strong>~5–6 hrs</strong> · Driving down, picking up Von and Matt at RDU on the way</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">✈️</div>
+            <div class="day-detail-text">RDU is ~1 hr north of Southern Pines on US-1 — easy detour en route</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Von -->
-    <div class="day-card" style="margin-bottom: 0.75rem;">
-      <div class="day-card-header">
-        <div class="day-header-text" style="width:100%">
-          <div class="day-date">New York City · LGA</div>
-          <div class="day-title">Von — Flying Delta</div>
+      <!-- Von -->
+      <div class="day-card" style="margin-bottom: 0.75rem;">
+        <div class="day-card-header">
+          <div class="day-header-text" style="width:100%">
+            <div class="day-date">New York City · LGA</div>
+            <div class="day-title">Von — Flying Delta</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">🛬</div>
+            <div class="day-detail-text"><strong>Arrives RDU: 4:21 PM</strong> · Thu Oct 8 · <strong>DL1453</strong> · LGA → RDU · <a href="https://www.delta.com/flight-status/results/DL/1453" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🛫</div>
+            <div class="day-detail-text"><strong>Departs RDU: 5:19 PM</strong> · Mon Oct 12 · <strong>DL1453</strong> · RDU → LGA · <a href="https://www.delta.com/flight-status/results/DL/1453" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">📍</div>
+            <div class="day-detail-text">Fritz will pick up at RDU. Pickup zones on lower level, Terminal 2.</div>
+          </div>
         </div>
       </div>
-      <div class="day-card-body">
-        <div class="day-detail">
-          <div class="day-detail-icon">🛬</div>
-          <div class="day-detail-text"><strong>Arrives RDU: 4:21 PM</strong> · Thu Oct 8 · <strong>DL1453</strong> · LGA → RDU · <a href="https://www.delta.com/flight-status/results/DL/1453" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
+
+      <!-- Matt -->
+      <div class="day-card" style="margin-bottom: 0.75rem;">
+        <div class="day-card-header">
+          <div class="day-header-text" style="width:100%">
+            <div class="day-date">Pittsburgh, PA · PIT</div>
+            <div class="day-title">Matt — Flying American</div>
+          </div>
         </div>
-        <div class="day-detail">
-          <div class="day-detail-icon">🛫</div>
-          <div class="day-detail-text"><strong>Departs RDU: 5:19 PM</strong> · Mon Oct 12 · <strong>DL1453</strong> · RDU → LGA · <a href="https://www.delta.com/flight-status/results/DL/1453" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
-        </div>
-        <div class="day-detail">
-          <div class="day-detail-icon">📍</div>
-          <div class="day-detail-text">Fritz will pick up at RDU. Pickup zones on lower level, Terminal 2.</div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">🛬</div>
+            <div class="day-detail-text"><strong>Arrives RDU: 3:45 PM</strong> · Thu Oct 8 · SW1283 PIT→BWI, then SW733 BWI→RDU · <a href="https://www.southwest.com/flight/retrieveCheckinDoc.html" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🛫</div>
+            <div class="day-detail-text"><strong>Departs RDU: Mon Oct 12</strong> · Breeze Airways B1500 · RDU → PIT · <a href="https://www.flybreeze.com/booking/flight-status" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">🎫</div>
+            <div class="day-detail-text">Flight number TBD — will add once confirmed</div>
+          </div>
+          <div class="day-detail">
+            <div class="day-detail-icon">📍</div>
+            <div class="day-detail-text">Fritz will pick up at RDU alongside Von. Matt arrives ~36 min before Von.</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Matt -->
-    <div class="day-card" style="margin-bottom: 0.75rem;">
-      <div class="day-card-header">
-        <div class="day-header-text" style="width:100%">
-          <div class="day-date">Pittsburgh, PA · PIT</div>
-          <div class="day-title">Matt — Flying American</div>
+      <!-- Charlie -->
+      <div class="day-card" style="margin-bottom: 0.75rem;">
+        <div class="day-card-header">
+          <div class="day-header-text" style="width:100%">
+            <div class="day-date">Pittsburgh, PA</div>
+            <div class="day-title">Charlie — Driving</div>
+          </div>
+        </div>
+        <div class="day-card-body">
+          <div class="day-detail">
+            <div class="day-detail-icon">🚗</div>
+            <div class="day-detail-text"><strong>~8 hrs</strong> straight through to Southern Pines</div>
+          </div>
         </div>
       </div>
-      <div class="day-card-body">
-        <div class="day-detail">
-          <div class="day-detail-icon">🛬</div>
-          <div class="day-detail-text"><strong>Arrives RDU: 3:45 PM</strong> · Thu Oct 8 · SW1283 PIT→BWI, then SW733 BWI→RDU · <a href="https://www.southwest.com/flight/retrieveCheckinDoc.html" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
-        </div>
-        <div class="day-detail">
-          <div class="day-detail-icon">🛫</div>
-          <div class="day-detail-text"><strong>Departs RDU: Mon Oct 12</strong> · Breeze Airways B1500 · RDU → PIT · <a href="https://www.flybreeze.com/booking/flight-status" target="_blank" style="color: var(--pine-light);">Check flight status →</a></div>
-        </div>
-        <div class="day-detail">
-          <div class="day-detail-icon">🎫</div>
-          <div class="day-detail-text">Flight number TBD — will add once confirmed</div>
-        </div>
-        <div class="day-detail">
-          <div class="day-detail-icon">📍</div>
-          <div class="day-detail-text">Fritz will pick up at RDU alongside Von. Matt arrives ~36 min before Von.</div>
-        </div>
+
+      <div style="background: var(--cream); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.82rem; color: var(--mid-gray); margin-top: 0.5rem;">
+        <strong style="color: var(--pine);">RDU → Southern Pines</strong><br>
+        Raleigh-Durham Airport to the VRBO is approximately <strong>just over 1 hour</strong> (70 miles south on US-1). Easy drive, no tolls.
       </div>
-    </div>
+    </details>
 
-    <!-- Charlie -->
-    <div class="day-card" style="margin-bottom: 0.75rem;">
-      <div class="day-card-header">
-        <div class="day-header-text" style="width:100%">
-          <div class="day-date">Pittsburgh, PA</div>
-          <div class="day-title">Charlie — Driving</div>
+    <details class="collapsible" id="costs-section">
+      <summary class="section-title">Cost Breakdown</summary>
+
+      <p class="section-subtitle">Shared Costs — Everyone</p>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Day</th>
+            <th>Per Person</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tot Hill Farm — greens fee</td>
+            <td>Friday</td>
+            <td>$180</td>
+          </tr>
+          <tr>
+            <td>Southern Pines — greens fee</td>
+            <td>Saturday</td>
+            <td>$245</td>
+          </tr>
+          <tr>
+            <td>Mid Pines — greens fee</td>
+            <td>Sunday</td>
+            <td>$305</td>
+          </tr>
+          <tr>
+            <td>Pine Needles — greens fee</td>
+            <td>Monday</td>
+            <td>$315</td>
+          </tr>
+          <tr>
+            <td>Lodging (Serene South Henley, 4 nights)</td>
+            <td>Thu–Mon</td>
+            <td>$346</td>
+          </tr>
+          <tr>
+            <td>Gambling ($30/round × 4)</td>
+            <td>Fri–Mon</td>
+            <td>$120</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Subtotal (before travel)</td>
+            <td>$1,511</td>
+          </tr>
+          <tr>
+            <td style="color: var(--mid-gray); font-style: italic;">Talamore — backup, if played instead <span style="white-space: nowrap;">(−$86)</span></td>
+            <td style="color: var(--mid-gray); font-style: italic;">Monday</td>
+            <td style="color: var(--mid-gray); font-style: italic;">$229</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="spacer"></div>
+      <p style="font-size:0.78rem; color: var(--mid-gray); font-style: italic;">Does not include food, drink, or travel. All greens fees confirmed.</p>
+    </details>
+
+    <details class="collapsible" id="booking-section">
+      <summary class="section-title">Booking Status</summary>
+      <div class="booking-list">
+
+        <div class="booking-item">
+          <div class="booking-top">
+            <div class="booking-course">Tot Hill Farm — Friday 10/9</div>
+            <span class="booking-badge badge-booked">✓ Booked</span>
+          </div>
+          <div class="booking-action">Confirmed at <strong>$180/person</strong>. Tee time secured.</div>
         </div>
-      </div>
-      <div class="day-card-body">
-        <div class="day-detail">
-          <div class="day-detail-icon">🚗</div>
-          <div class="day-detail-text"><strong>~8 hrs</strong> straight through to Southern Pines</div>
+
+        <div class="booking-item">
+          <div class="booking-top">
+            <div class="booking-course">Southern Pines — Saturday 10/10</div>
+            <span class="booking-badge badge-booked">✓ Booked</span>
+          </div>
+          <div class="booking-action">Tee time: <strong>7:33 AM</strong> · $245/person</div>
+          <div class="booking-notes">Call (910) 692-6551 for any changes.</div>
         </div>
-      </div>
-    </div>
 
-    <div style="background: var(--cream); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.82rem; color: var(--mid-gray); margin-top: 0.5rem;">
-      <strong style="color: var(--pine);">RDU → Southern Pines</strong><br>
-      Raleigh-Durham Airport to the VRBO is approximately <strong>just over 1 hour</strong> (70 miles south on US-1). Easy drive, no tolls.
-    </div>
-
-    <div class="spacer"></div>
-    <h2 class="section-title" id="costs-section">Cost Breakdown</h2>
-
-    <p class="section-subtitle">Shared Costs — Everyone</p>
-    <table class="cost-table">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Day</th>
-          <th>Per Person</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tot Hill Farm — greens fee</td>
-          <td>Friday</td>
-          <td>$180</td>
-        </tr>
-        <tr>
-          <td>Southern Pines — greens fee</td>
-          <td>Saturday</td>
-          <td>$245</td>
-        </tr>
-        <tr>
-          <td>Mid Pines — greens fee</td>
-          <td>Sunday</td>
-          <td>$305</td>
-        </tr>
-        <tr>
-          <td>Pine Needles — greens fee</td>
-          <td>Monday</td>
-          <td>$315</td>
-        </tr>
-        <tr>
-          <td>Lodging (Serene South Henley, 4 nights)</td>
-          <td>Thu–Mon</td>
-          <td>$346</td>
-        </tr>
-        <tr>
-          <td>Gambling ($30/round × 4)</td>
-          <td>Fri–Mon</td>
-          <td>$120</td>
-        </tr>
-        <tr class="total-row">
-          <td colspan="2">Subtotal (before travel)</td>
-          <td>$1,511</td>
-        </tr>
-        <tr>
-          <td style="color: var(--mid-gray); font-style: italic;">Talamore — backup, if played instead <span style="white-space: nowrap;">(−$86)</span></td>
-          <td style="color: var(--mid-gray); font-style: italic;">Monday</td>
-          <td style="color: var(--mid-gray); font-style: italic;">$229</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="spacer"></div>
-    <p style="font-size:0.78rem; color: var(--mid-gray); font-style: italic;">Does not include food, drink, or travel. All greens fees confirmed.</p>
-
-    <div class="spacer"></div>
-    <h2 class="section-title" id="booking-section">Booking Status</h2>
-    <div class="booking-list">
-
-      <div class="booking-item">
-        <div class="booking-top">
-          <div class="booking-course">Tot Hill Farm — Friday 10/9</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
+        <div class="booking-item">
+          <div class="booking-top">
+            <div class="booking-course">Mid Pines — Sunday 10/11</div>
+            <span class="booking-badge badge-booked">✓ Booked</span>
+          </div>
+          <div class="booking-action">Tee time: <strong>8:05 AM</strong> · $305/person</div>
+          <div class="booking-notes">Call (910) 692-6551 for any changes.</div>
         </div>
-        <div class="booking-action">Confirmed at <strong>$180/person</strong>. Tee time secured.</div>
-      </div>
 
-      <div class="booking-item">
-        <div class="booking-top">
-          <div class="booking-course">Southern Pines — Saturday 10/10</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
+        <div class="booking-item">
+          <div class="booking-top">
+            <div class="booking-course">Pine Needles — Monday 10/12</div>
+            <span class="booking-badge badge-booked">✓ Booked</span>
+          </div>
+          <div class="booking-action">Tee time: <strong>8:00 AM</strong> · $315/person</div>
+          <div class="booking-notes">Call (910) 692-6551 for any changes. Last round — use locker room to shower afterward. Pack toiletry bag + change of clothes, leave in car.</div>
         </div>
-        <div class="booking-action">Tee time: <strong>7:33 AM</strong> · $245/person</div>
-        <div class="booking-notes">Call (910) 692-6551 for any changes.</div>
-      </div>
 
-      <div class="booking-item">
-        <div class="booking-top">
-          <div class="booking-course">Mid Pines — Sunday 10/11</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
+        <div class="booking-item">
+          <div class="booking-top">
+            <div class="booking-course">Talamore — Monday 10/12 (Backup)</div>
+            <span class="booking-badge badge-booked">✓ Booked</span>
+          </div>
+          <div class="booking-action">Tee time: <strong>8:51 AM</strong> · $229/person · Rees Jones Design · Southern Pines</div>
+          <div class="booking-notes">Backup only — Monday's round is now Pine Needles.</div>
         </div>
-        <div class="booking-action">Tee time: <strong>8:05 AM</strong> · $305/person</div>
-        <div class="booking-notes">Call (910) 692-6551 for any changes.</div>
-      </div>
 
-      <div class="booking-item">
-        <div class="booking-top">
-          <div class="booking-course">Pine Needles — Monday 10/12</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
+        <div class="booking-item">
+          <div class="booking-top">
+            <div class="booking-course">VRBO — Serene South Henley</div>
+            <span class="booking-badge badge-booked">✓ Booked</span>
+          </div>
+          <div class="booking-action">Oct 8–12 · <strong>$1,385 total</strong> ($346/person) · <a href="https://www.vrbo.com/4388553" target="_blank" style="color: var(--pine-light);">VRBO #4388553</a></div>
+          <div class="booking-notes">Check-in Thursday, check-out Monday morning before golf.</div>
         </div>
-        <div class="booking-action">Tee time: <strong>8:00 AM</strong> · $315/person</div>
-        <div class="booking-notes">Call (910) 692-6551 for any changes. Last round — use locker room to shower afterward. Pack toiletry bag + change of clothes, leave in car.</div>
-      </div>
 
-      <div class="booking-item">
-        <div class="booking-top">
-          <div class="booking-course">Talamore — Monday 10/12 (Backup)</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
-        </div>
-        <div class="booking-action">Tee time: <strong>8:51 AM</strong> · $229/person · Rees Jones Design · Southern Pines</div>
-        <div class="booking-notes">Backup only — Monday's round is now Pine Needles.</div>
       </div>
+    </details>
 
-      <div class="booking-item">
-        <div class="booking-top">
-          <div class="booking-course">VRBO — Serene South Henley</div>
-          <span class="booking-badge badge-booked">✓ Booked</span>
-        </div>
-        <div class="booking-action">Oct 8–12 · <strong>$1,385 total</strong> ($346/person) · <a href="https://www.vrbo.com/4388553" target="_blank" style="color: var(--pine-light);">VRBO #4388553</a></div>
-        <div class="booking-notes">Check-in Thursday, check-out Monday morning before golf.</div>
-      </div>
-
-    </div>
   </div>
 
   <!-- ── STANDINGS ── -->
@@ -2305,7 +2338,9 @@
       showTab(hash, false);
     } else if (MOVED[hash]) {
       showTab('logistics', false);
-      document.getElementById(MOVED[hash]).scrollIntoView();
+      const section = document.getElementById(MOVED[hash]);
+      section.open = true;
+      section.scrollIntoView();
     } else {
       showTab('itinerary', false);
     }
