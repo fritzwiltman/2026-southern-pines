@@ -88,6 +88,13 @@ holes, wait for confirmation, then edit, check and push.
 - If Monday moves to Talamore (the backup), swap the commented-out course line as the comment
   in the Monday round explains.
 
+## Handicaps
+
+`HANDICAP_INDEX` and each course's `courseHandicap` and `playingHandicap` (the 90% allowance) in
+`COURSES` are copied from GHIN. Don't calculate them: GHIN takes 90% of the exact, unrounded
+course handicap, so working it out from the rounded number can be off by one. If an index
+changes, ask Fritz for the new GHIN numbers on each course.
+
 ## Other edits
 
 Change only what's asked, match the existing style, check the page still works, and push to
