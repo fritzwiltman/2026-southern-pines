@@ -1591,12 +1591,12 @@
       ],
       // A team can press once it's closed out in a match (down more holes than are left).
       // e.g. { match: 1, startHole: 5 } → new $10 bet on hole 6. The pressing team is worked out.
-      presses: [],
+      presses: [{ match: 1, startHole: 5 }],
       scores: {
-        Fritz:   [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
-        Von:     [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
-        Matt:    [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
-        Charlie: [_, _, _, _, _, _, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Fritz:   [5, 4, 3, 5, 7, 5, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Von:     [4, 5, 4, 7, 8, 3, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Matt:    [8, 6, 4, 8, 9, 5, _, _, _,   _, _, _, _, _, _, _, _, _],
+        Charlie: [5, 7, 4, 6, 9, 2, _, _, _,   _, _, _, _, _, _, _, _, _],
       },
     },
     {
