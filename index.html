@@ -2157,11 +2157,15 @@
     ];
 
     if (round.format === 'nassau') {
-      const sides = { A: 'A', B: 'B' };
+      // Teams are shown by initials in roster order (FC vs VM); scoring still uses sides A / B internally.
+      const byRoster = team => [...team].sort((a, b) => PLAYERS.indexOf(a) - PLAYERS.indexOf(b));
+      const sides = res.ready ? { A: initials(byRoster(res.teams.A)), B: initials(byRoster(res.teams.B)) } : { A: 'A', B: 'B' };
       const { resolved } = res;
       const rule = from ? `${from.A.map(ordinal).join(' & ')} vs ${from.B.map(ordinal).join(' & ')} from ${resolved.src?.day || 'the earlier round'}` : '';
-      intro = `<div class="sc-teams"><strong>A:</strong> ${res.ready ? res.teams.A.join(' & ') : 'TBD'} &nbsp;·&nbsp; ` +
-        `<strong>B:</strong> ${res.ready ? res.teams.B.join(' & ') : 'TBD'}</div>`;
+      const order = res.ready && PLAYERS.indexOf(byRoster(res.teams.B)[0]) < PLAYERS.indexOf(byRoster(res.teams.A)[0]) ? ['B', 'A'] : ['A', 'B'];
+      intro = '<div class="sc-teams">' + (res.ready
+        ? order.map(s => `<strong>${sides[s]}:</strong> ${byRoster(res.teams[s]).join(' & ')}`).join(' &nbsp;·&nbsp; ')
+        : '<strong>Teams:</strong> TBD') + '</div>';
       if (!res.ready) {
         notes.push({
           pending: `<strong>Teams TBD</strong> — set after ${resolved.src?.day}'s round (${rule}).`,
@@ -2174,14 +2178,14 @@
         boxes += '<div class="bet-box net"><div class="bet-box-label">Net</div><div class="bet-box-value tbd">TBD</div></div>';
       } else {
         for (const p of res.presses) (ctx.pressPills[p.start] ||= []).push(p.key);
-        ctx.tracker.push({ label: 'Hole winner', cells: res.winners.map(w => (w === null ? null : w === 'H' ? '–' : w)) });
-        for (const b of res.bets) ctx.tracker.push({ label: b.label, cells: b.status });
+        ctx.tracker.push({ label: 'Hole winner', sides: () => sides, cells: res.winners.map(w => (w === null ? null : w === 'H' ? '–' : w)) });
+        for (const b of res.bets) ctx.tracker.push({ label: b.label, sides: () => sides, cells: b.status });
         for (const e of res.invalidPresses) notes.push(`<strong>Press ignored</strong> — ${e}.`);
         boxes = res.bets.filter(b => !b.parent).map(b => betBox(b, sides, res.presses.filter(p => p.parent === b))).join('');
         boxes += `<div class="bet-box net">
           <div class="bet-box-label">Net</div>
           <div class="bet-box-value${res.complete ? '' : ' tbd'}">${!res.complete ? 'TBD'
-            : res.teamA === 0 ? 'Push' : `${res.teamA > 0 ? 'A' : 'B'} wins $${Math.abs(res.teamA)} each`}</div>
+            : res.teamA === 0 ? 'Push' : `${sides[res.teamA > 0 ? 'A' : 'B']} wins $${Math.abs(res.teamA)} each`}</div>
         </div>`;
       }
     }
