@@ -1487,7 +1487,7 @@
 
     <!-- Rendered from ROUNDS in the scorecard script below -->
     <table class="standings-table" id="standings-table"></table>
-    <p class="standings-note">What each winner came out ahead that day, after their $30 (presses included). A round shows TBD until it's posted.</p>
+    <p class="standings-note">What each player won that day: the pot payout on Sunday and Monday, net bet winnings on Friday and Saturday (presses included). A round shows TBD until it's posted.</p>
 
     <hr class="divider">
 
@@ -1731,7 +1731,7 @@
   }
 
   // Pot pays POT_SPLIT by place; tied players split the places they cover.
-  // Returns { player: net $ after buy-in }.
+  // Returns { player: $ paid out } (before the buy-in).
   function potPayouts(ranked) {
     const pot = BUY_IN * PLAYERS.length;
     const places = PLAYERS.map((p, i) => (POT_SPLIT[i] || 0) * pot);
@@ -1740,7 +1740,7 @@
       let j = i;
       while (j < ranked.length && ranked[j].rank === ranked[i].rank) j++;
       const share = sum(places.slice(i, j)) / (j - i);
-      for (let k = i; k < j; k++) money[ranked[k].player] = share - BUY_IN;
+      for (let k = i; k < j; k++) money[ranked[k].player] = share;
       i = j;
     }
     return money;
@@ -1749,7 +1749,10 @@
   function individualResults(rows, key, higherIsBetter) {
     const ranked = rankRows(rows, key, higherIsBetter);
     const complete = rows.every(r => r.thru === 18);
-    return { rows: ranked, complete, money: complete ? potPayouts(ranked) : null };
+    const payout = complete ? potPayouts(ranked) : null;
+    // money = net after the buy-in; payout = what each player is paid from the pot.
+    const money = payout && Object.fromEntries(PLAYERS.map(p => [p, (payout[p] || 0) - BUY_IN]));
+    return { rows: ranked, complete, money, payout };
   }
 
   // Net double bogey or worse 0, bogey 1, par 2, birdie 3, eagle 4, ...
@@ -2288,11 +2291,12 @@
   }
 
   function renderStandings() {
-    // Winners only: what each player came out ahead that day (after their $30, presses
-    // included). Nothing is shown for a day they didn't win; TBD until the round is posted.
+    // Winners only: what each player won that day, before their buy-in. Pot rounds show the
+    // payout ($90 / $30); match rounds show bets won, presses included. Nothing is shown for a
+    // day they didn't win; TBD until the round is posted.
     const results = ROUNDS.map(r => FORMATS[r.format].results(r));
     const done = results.filter(r => r.complete);
-    const won = (r, p) => Math.max(0, r.money[p] || 0);
+    const won = (r, p) => (r.payout ? r.payout[p] || 0 : Math.max(0, r.money[p] || 0));
     const rows = rankRows(PLAYERS.map(player => ({
       player, total: done.length ? sum(done.map(r => won(r, player))) : null,
     })), 'total', true);
