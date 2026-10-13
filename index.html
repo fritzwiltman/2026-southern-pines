@@ -560,6 +560,7 @@
   .rank-1 { background: var(--gold); color: var(--pine); }
   .earnings-cell { color: var(--charcoal); }
   .earnings-pos { color: #1a5e2a; }
+  .earnings-neg { color: var(--red-accent); }
   .tbd-cell { color: var(--light-gray); font-size: 0.72rem; letter-spacing: 0.1em; }
 
   .round-section {
@@ -600,6 +601,9 @@
     margin: -0.75rem 0 1.5rem;
     line-height: 1.5;
   }
+  .settle-up { margin: -0.5rem 0 1.5rem; }
+  .settle-up .bet-box-value { font-weight: 400; color: var(--charcoal); }
+  .settle-up .bet-box-value strong { color: var(--pine); }
 
   /* ── SCORECARDS ── */
   .sc-rules {
@@ -1487,7 +1491,8 @@
 
     <!-- Rendered from ROUNDS in the scorecard script below -->
     <table class="standings-table" id="standings-table"></table>
-    <p class="standings-note">What each player won that day: the pot payout on Sunday and Monday, net bet winnings on Friday and Saturday (presses included). A round shows TBD until it's posted.</p>
+    <p class="standings-note">What each player came out up or down that day, with $30 a round in from everyone (presses included). Total is what the settle up below pays out. A round shows TBD until it's posted.</p>
+    <div id="settle-up" class="settle-up"></div>
 
     <hr class="divider">
 
@@ -1527,6 +1532,7 @@
   const _ = null;
   const PLAYERS = ['Fritz', 'Von', 'Matt', 'Charlie'];
   const BUY_IN = 30;              // per player, per round
+  const BANKER = 'Fritz';         // settles up with everyone at the end
   const BET_VALUE = 10;           // per Sixes match / Nassau bet
   const PRESS_VALUE = 10;         // per Nassau press
   const POT_SPLIT = [0.75, 0.25]; // Stableford / stroke play: 1st, 2nd
@@ -1750,9 +1756,9 @@
     const ranked = rankRows(rows, key, higherIsBetter);
     const complete = rows.every(r => r.thru === 18);
     const payout = complete ? potPayouts(ranked) : null;
-    // money = net after the buy-in; payout = what each player is paid from the pot.
+    // money = net after the buy-in.
     const money = payout && Object.fromEntries(PLAYERS.map(p => [p, (payout[p] || 0) - BUY_IN]));
-    return { rows: ranked, complete, money, payout };
+    return { rows: ranked, complete, money };
   }
 
   // Net double bogey or worse 0, bogey 1, par 2, birdie 3, eagle 4, ...
@@ -2291,23 +2297,32 @@
   }
 
   function renderStandings() {
-    // Winners only: what each player won that day, before their buy-in. Pot rounds show the
-    // payout ($90 / $30); match rounds show bets won, presses included. Nothing is shown for a
-    // day they didn't win; TBD until the round is posted.
+    // Net per day: everyone puts $30 into each round, so this is what they came out up or down
+    // (presses included). The Total column is the trip net the settle-up box pays out.
     const results = ROUNDS.map(r => FORMATS[r.format].results(r));
     const done = results.filter(r => r.complete);
-    const won = (r, p) => (r.payout ? r.payout[p] || 0 : Math.max(0, r.money[p] || 0));
+    const net = (r, p) => r.money[p] || 0;
     const rows = rankRows(PLAYERS.map(player => ({
-      player, total: done.length ? sum(done.map(r => won(r, player))) : null,
+      player, total: done.length ? sum(done.map(r => net(r, player))) : null,
     })), 'total', true);
-    const winCell = v => (v > 0 ? `<td class="earnings-cell earnings-pos">$${v}</td>` : '<td></td>');
+    const sign = v => (v > 0 ? `+$${v}` : v < 0 ? `−$${-v}` : '$0');
+    const netCell = v => `<td class="earnings-cell${v > 0 ? ' earnings-pos' : v < 0 ? ' earnings-neg' : ''}">${sign(v)}</td>`;
     document.getElementById('standings-table').innerHTML =
       `<thead><tr><th>Player</th>${ROUNDS.map(r => `<th>${r.day.slice(0, 3)}</th>`).join('')}<th>Total</th></tr></thead><tbody>` +
       rows.map(row => `<tr>
         <td><span class="player-name"><span class="rank-badge${row.rank === 1 ? ' rank-1' : ''}">${row.rank ?? '—'}</span> ${row.player}</span></td>
-        ${results.map(r => (r.complete ? winCell(won(r, row.player)) : '<td class="tbd-cell">TBD</td>')).join('')}
-        ${row.total === null ? '<td class="tbd-cell">—</td>' : winCell(row.total)}
+        ${results.map(r => (r.complete ? netCell(net(r, row.player)) : '<td class="tbd-cell">TBD</td>')).join('')}
+        ${row.total === null ? '<td class="tbd-cell">—</td>' : netCell(row.total)}
       </tr>`).join('') + '</tbody>';
+
+    // Settle up: everyone squares their trip net with the banker.
+    const total = Object.fromEntries(rows.map(r => [r.player, r.total || 0]));
+    const lines = PLAYERS.filter(p => p !== BANKER && total[p] !== 0).sort((a, b) => total[a] - total[b])
+      .map(p => (total[p] < 0 ? `<strong>${p}</strong> pays ${BANKER} $${-total[p]}` : `${BANKER} pays <strong>${p}</strong> $${total[p]}`));
+    document.getElementById('settle-up').innerHTML = !done.length ? '' : `<div class="bet-box">
+      <div class="bet-box-label">Settle up${done.length < ROUNDS.length ? ` · after ${done.length} ${plural(done.length, 'round')}` : ''}</div>
+      ${lines.length ? lines.map(l => `<div class="bet-box-value">${l}</div>`).join('') : '<div class="bet-box-value">All square</div>'}
+    </div>`;
 
     document.getElementById('round-cards').innerHTML = scorecardKey() + ROUNDS.map(renderRound).join('');
 
